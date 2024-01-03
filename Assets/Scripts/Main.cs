@@ -22,6 +22,7 @@ public class Main : MonoBehaviour
                 {
                     obj = new() { name = "@Main" };
                     obj.AddComponent<Main>();
+                    obj.AddComponent<AudioSource>();
                     DontDestroyOnLoad(obj);
                     _instance = obj.GetComponent<Main>();
                 }
@@ -33,9 +34,14 @@ public class Main : MonoBehaviour
 
     private UIManager _ui = new();
     private GameManager _game = new();
-    private SoundManager _sound = new();
+    private SoundManager _sound = new SoundManager();
 
     public static UIManager UI => Instance?._ui;
     public static GameManager Game => Instance?._game;
     public static SoundManager Sound => Instance?._sound;
+
+    private void Awake()
+    {
+        _sound.SetBGM();
+    }
 }

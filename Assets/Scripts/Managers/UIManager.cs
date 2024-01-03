@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         
     }
+    private void Start()
+    {
+        Main.Game.OnStageStart += SetHUD;
+    }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
+    }
+    public void SetHUD()
+    {
+        Canvas _hud = Resources.Load<Canvas>("HUDPanel");
+        Instantiate(_hud);
     }
 }

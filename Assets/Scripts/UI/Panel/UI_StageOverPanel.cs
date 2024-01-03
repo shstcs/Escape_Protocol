@@ -10,7 +10,7 @@ public class UI_StageOverPanel : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 0.0f;
+        StartCoroutine(nameof(TimeStopDelay));
         ChangeText();
     }
 
@@ -23,5 +23,10 @@ public class UI_StageOverPanel : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
+    }
+    private IEnumerator TimeStopDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Time.timeScale = 0;
     }
 }
