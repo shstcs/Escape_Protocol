@@ -1,20 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GunController : MonoBehaviour
 {
     [SerializeField] private Gun _currentGun;
     [SerializeField] private Vector3 _originPos;
-
+    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+    //[SerializeField] private Player _player;
+    
+    private CinemachinePOV _pov;
     private float _currentFireRate;
     private bool isReload = false;
     private AudioSource _audioSource;  // 발사 소리 재생기
     private RaycastHit hitInfo;  // 총알의 충돌 정보
 
+    
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        _pov = _virtualCamera.GetCinemachineComponent<CinemachinePOV>();
     }
 
 
@@ -120,14 +127,14 @@ public class GunController : MonoBehaviour
 
     IEnumerator CORetroAction()
     {
-        Vector3 recoilBack = new Vector3(_currentGun.RetroActionForce, _originPos.y, _originPos.z);     
+        Vector3 recoilBack = new Vector3(_originPos.x, _originPos.y, _originPos.z - _currentGun.RetroActionForce);
 
         _currentGun.transform.localPosition = _originPos;
 
-        // 반동 시작
-        while (_currentGun.transform.localPosition.x <= _currentGun.RetroActionForce - 0.02f)
+        while (_currentGun.transform.localPosition.z >= _originPos.z - _currentGun.RetroActionForce + 0.02f)
         {
             _currentGun.transform.localPosition = Vector3.Lerp(_currentGun.transform.localPosition, recoilBack, 0.4f);
+            _pov.m_VerticalAxis.Value += -_currentGun.RetroActionForce;
             yield return null;
         }
 
