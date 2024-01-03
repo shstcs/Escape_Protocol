@@ -16,7 +16,11 @@ public class Player : MonoBehaviour
 
     public PlayerStamina Stamina { get; private set; }
 
-    [field:SerializeField] public Gun Gun { get; private set; }
+    [field: SerializeField] public Gun Gun { get; private set; }
+
+    // 현재 가지고 있는 키 확인
+    [HideInInspector]
+    public KeyCheck KeyCheck = new();
 
     private void Awake()
     {
@@ -26,6 +30,9 @@ public class Player : MonoBehaviour
         Stamina = GetComponent<PlayerStamina>();
 
         stateMachine = new PlayerStateMachine(this, Stamina);
+
+        //Main에 이 플레이어 추가 - 연호
+        Main.Player = this;
     }
 
     private void Start()
@@ -44,4 +51,12 @@ public class Player : MonoBehaviour
     {
         stateMachine.PhysicsUpdate();
     }
+}
+
+//잠시 넣어놓았습니다 - 연호
+public class KeyCheck
+{
+    public bool Red { get; set; }
+    public bool Blue { get; set; }
+    public bool Green { get; set; }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class ItemObject : MonoBehaviour, IInteractable
 {
@@ -13,7 +14,21 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        //Inventory.instance.AddItem(item);
+        switch (item.DisplayName)
+        {
+            case "BlueKey":
+                Main.Player.KeyCheck.Blue = true;
+                break;
+
+            case "GreenKey":
+                Main.Player.KeyCheck.Green = true;
+                break;
+
+            case "RedKey":
+                Main.Player.KeyCheck.Red = true;
+                break;
+        }
+        Debug.Log(Main.Player.KeyCheck.Blue + " " + Main.Player.KeyCheck.Green + " " + Main.Player.KeyCheck.Red);
         Destroy(gameObject);
     }
 }

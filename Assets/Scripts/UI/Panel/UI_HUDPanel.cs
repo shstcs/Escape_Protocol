@@ -24,6 +24,7 @@ public class UI_HUDPanel : MonoBehaviour
     private Gun _gun;
 
     private Color _staminaColor;
+    private Color _hpColor;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class UI_HUDPanel : MonoBehaviour
         _quest.transform.SetParent(transform.Find("QuestLayout"));
 
         _staminaColor = _staminaBar.color;
+        _hpColor = _hpBar.color;
     }
 
     private void Update()
@@ -86,7 +88,10 @@ public class UI_HUDPanel : MonoBehaviour
 
     private void ChangeHP()
     {
-        //_hpBar.fillAmount = _health.   체력을 가져올 수 있게 되면 사용.
+        float old = _hpBar.fillAmount;
+        _hpBar.fillAmount = _health.Health / 100;
+        _hpText.text = _health.Health.ToString("F0");
+        _hpBar.color = old > _hpBar.fillAmount ? new Color(1, .7f, .7f) : _hpColor;
     }
 
     private void ChangeStamina()

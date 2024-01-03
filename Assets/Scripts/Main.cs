@@ -13,12 +13,12 @@ public class Main : MonoBehaviour
     {
         get
         {
-            if(!_initialized)
+            if (!_initialized)
             {
                 _initialized = true;
 
                 GameObject obj = GameObject.Find("@Main");
-                if (obj==null)
+                if (obj == null)
                 {
                     obj = new() { name = "@Main" };
                     obj.AddComponent<Main>();
@@ -35,13 +35,20 @@ public class Main : MonoBehaviour
     private UIManager _ui = new();
     private GameManager _game = new();
     private SoundManager _sound = new SoundManager();
+    private Player _player;
 
     public static UIManager UI => Instance?._ui;
     public static GameManager Game => Instance?._game;
     public static SoundManager Sound => Instance?._sound;
-
-    private void Awake()
+    public static Player Player
     {
-        _sound.SetBGM();
+        get
+        {
+            return Instance?._player == null ? null : Instance?._player;
+        }
+        set
+        {
+            Instance._player = value;
+        }
     }
 }
