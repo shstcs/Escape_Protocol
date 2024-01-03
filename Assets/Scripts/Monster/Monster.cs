@@ -37,10 +37,7 @@ public class Monster : MonoBehaviour
     {
         stateMachine.HandleInput();
         stateMachine.Update();
-        if(IsInAttackRange())
-        {
-            stateMachine.Target.TakeDamage(Data.Damage);
-        }
+
     }
     private void FixedUpdate()
     {
