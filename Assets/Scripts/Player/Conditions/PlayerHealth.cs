@@ -1,11 +1,15 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float _maxHealth = 100;
     [SerializeField] private float _healthRegenerationRate = 0.5f;
+    [SerializeField] private float _alphaDecreaseRate = 30f;
+    [SerializeField] private Image _hitImage;
+    private bool _isDecreasingAlpha = false;
     private float _health;
     public event Action OnDie;
 
@@ -23,7 +27,12 @@ public class PlayerHealth : MonoBehaviour
         {
             StartHealthRegeneration();
         }
-        Debug.Log(_health);
+        //Debug.Log(_health);
+
+        if (_isDecreasingAlpha)
+        {
+            StartDecreaseAlpha();
+        }
     }
 
     private void ResetHealth()
@@ -31,9 +40,14 @@ public class PlayerHealth : MonoBehaviour
         _health = _maxHealth;
     }
 
-    public void StartHealthRegeneration()
+    private void StartHealthRegeneration()
     {
         StartCoroutine(HealthRegeneration());
+    }
+
+    private void StartDecreaseAlpha()
+    {
+        StartCoroutine(DecreaseAlphaOverTimeCoroutine());
     }
 
     private IEnumerator HealthRegeneration()
@@ -47,15 +61,23 @@ public class PlayerHealth : MonoBehaviour
                 {
                     _health = 100f;
                 }
-                //float amountToRegenerate = Time.deltaTime / _regenerationRate;
-                //_health = Mathf.Min(_health + amountToRegenerate, _maxHealth);
-                //Debug.Log("체력 회복: " + _health);
             }
             yield return new WaitForSeconds(1f); // 1초마다 체크
         }
     }
 
-    public void TakeDamage(int damage)
+    private void SetHitImageAlpha(float alpha)
+    {
+        if (_hitImage != null)
+        {
+            Color imageColor = _hitImage.color;
+            imageColor.a = alpha;
+            _hitImage.color = imageColor;
+        }
+    }
+
+
+    private void TakeDamage(int damage)
     {
         if (_health <= 0) return;
 
@@ -66,10 +88,6 @@ public class PlayerHealth : MonoBehaviour
             OnDie?.Invoke();
             Debug.Log("죽었어요.");
         }
-        //else if (_health > 0 && _health < _maxHealth)
-        //{
-        //    StartHealthRegeneration();
-        //}
     }
 
     // 테스트용
@@ -78,7 +96,25 @@ public class PlayerHealth : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             TakeDamage(50);
+
+            // 스프라이트 알파값을 70/255에서 줄어들게 설정
+            SetHitImageAlpha(0.27f);
+            _isDecreasingAlpha = true;
+
             Debug.Log("적과 충돌! 현재 체력은 : " + _health);
         }
+    }
+
+    private IEnumerator DecreaseAlphaOverTimeCoroutine()
+    {
+        while (_hitImage.color.a > 0)
+        {
+            float alphaValue = Mathf.Clamp01(_hitImage.color.a - Time.deltaTime * (_alphaDecreaseRate / 255f));
+            SetHitImageAlpha(alphaValue);
+
+            yield return null;
+        }
+
+        _isDecreasingAlpha = false; // 알파값이 0이 되면 코루틴 종료
     }
 }
