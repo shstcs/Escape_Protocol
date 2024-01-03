@@ -37,7 +37,6 @@ public class Monster : MonoBehaviour
     {
         stateMachine.HandleInput();
         stateMachine.Update();
-
     }
     private void FixedUpdate()
     {

@@ -12,14 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4be5a1c57f31340b63b2012fdd7af4, type: 3}
   m_Name: MonsterSO
   m_EditorClassIdentifier: 
-  <PlayerChasingRange>k__BackingField: 50
+  <PlayerChasingRange>k__BackingField: 20
   <AttackRange>k__BackingField: 1.5
   <ForceTransitionTime>k__BackingField: 0
   <Damage>k__BackingField: 50
   <Dealing_Start_TransitionTime>k__BackingField: 1
   <Dealing_End_TransitionTime>k__BackingField: 1
-  <MonsterGroundData>k__BackingField:
-    <BaseSpeed>k__BackingField: 5
-    <BaseRotationDamping>k__BackingField: 1
-    <WalkSpeedModifier>k__BackingField: 0.8
-    <RunSpeedModifier>k__BackingField: 1.2

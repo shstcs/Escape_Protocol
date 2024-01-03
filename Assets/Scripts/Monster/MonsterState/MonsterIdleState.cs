@@ -12,14 +12,12 @@ public class MonsterIdleState : MonsterBaseState
     {
         stateMachine.MovementSpeedModifier = 0f;
         base.Enter();
-        StartAnimation(stateMachine.Monster.AnimationData.GroundParameterHash);
         StartAnimation(stateMachine.Monster.AnimationData.IdleParameterHash);
     }
 
     public override void Exit()
     {
         base.Exit();
-        StopAnimation(stateMachine.Monster.AnimationData.GroundParameterHash);
         StopAnimation(stateMachine.Monster.AnimationData.IdleParameterHash);
     }
 

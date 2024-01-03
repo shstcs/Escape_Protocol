@@ -13,14 +13,12 @@ public class MonsterChasingState : MonsterBaseState
     {
         stateMachine.MovementSpeedModifier = 1.5f;
         base.Enter();
-        StartAnimation(stateMachine.Monster.AnimationData.GroundParameterHash);
         StartAnimation(stateMachine.Monster.AnimationData.RunParameterHash);
     }
 
     public override void Exit()
     {
         base.Exit();
-        StopAnimation(stateMachine.Monster.AnimationData.GroundParameterHash);
         StopAnimation(stateMachine.Monster.AnimationData.RunParameterHash);
     }
 
