@@ -14,14 +14,16 @@ public class Player : MonoBehaviour
 
     private PlayerStateMachine stateMachine;
 
+    public PlayerStamina Stamina { get; private set; }
 
     private void Awake()
     {
         Input = GetComponent<PlayerInput>();
         Controller = GetComponent<CharacterController>();
         ForceReceiver = GetComponent<ForceReceiver>();
+        Stamina = GetComponent<PlayerStamina>();
 
-        stateMachine = new PlayerStateMachine(this);
+        stateMachine = new PlayerStateMachine(this, Stamina);
     }
 
     private void Start()
@@ -40,5 +42,4 @@ public class Player : MonoBehaviour
     {
         stateMachine.PhysicsUpdate();
     }
-
 }

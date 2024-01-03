@@ -23,13 +23,17 @@ public class PlayerStateMachine : StateMachine
 
     public Transform MainCameraTransform { get; set; }
 
-    public PlayerStateMachine(Player player)
+    public PlayerStamina Stamina { get; private set; }
+
+    public PlayerStateMachine(Player player, PlayerStamina stamina)
     {
         this.Player = player;
+        // PlayerStamina 초기화
+        Stamina = stamina;
 
         IdleState = new PlayerIdleState(this);
-        WalkState = new PlayerWalkState(this);
-        RunState = new PlayerRunState(this);
+        WalkState = new PlayerWalkState(this, stamina);
+        RunState = new PlayerRunState(this, stamina);
         JumpState = new PlayerJumpState(this);
         FallState = new PlayerFallState(this);
 

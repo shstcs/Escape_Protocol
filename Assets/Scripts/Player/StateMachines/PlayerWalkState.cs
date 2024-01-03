@@ -3,8 +3,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerWalkState : PlayerGroundedState
 {
-    public PlayerWalkState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
+    private PlayerStamina playerStamina;
+
+    public PlayerWalkState(PlayerStateMachine playerStateMachine, PlayerStamina stamina) : base(playerStateMachine)
     {
+        playerStamina = stamina;
     }
 
     public override void Enter()
@@ -20,7 +23,11 @@ public class PlayerWalkState : PlayerGroundedState
 
     protected override void OnRunStarted(InputAction.CallbackContext context)
     {
-        base.OnRunStarted(context);
-        stateMachine.ChangeState(stateMachine.RunState);
+        // 달리기 상태로 전환하기 위한 충분한 스태미나가 있는지 확인
+        if (playerStamina.CanConsumeStamina(playerStamina.StaminaConsumptionRate))
+        {
+            base.OnRunStarted(context);
+            stateMachine.ChangeState(stateMachine.RunState);
+        }
     }
 }
