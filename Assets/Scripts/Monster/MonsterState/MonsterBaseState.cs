@@ -1,37 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MonsterBaseState : IState
 {
     protected MonsterStateMachine stateMachine;
 
+    #region IState
     public MonsterBaseState(MonsterStateMachine enemyStateMachine)
     {
         stateMachine = enemyStateMachine;
     }
-    public void Enter()
+    public virtual void Enter()
     {
-        throw new System.NotImplementedException();
+        stateMachine.Monster.Agent.speed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier;
+    }
+    public virtual void Exit()
+    {
+
+    }
+    public virtual void Update()
+    {
+        Move();
+    }
+    public virtual void HandleInput()
+    {
+
+    }
+    public virtual void PhysicsUpdate()
+    {
+
+    }
+    #endregion
+    #region Methods
+    protected void StartAnimation(int animationHash)
+    {
+        stateMachine.Monster.Animator.SetBool(animationHash, true);
+    }
+    protected void StopAnimation(int animationHash)
+    {
+        stateMachine.Monster.Animator.SetBool(animationHash, false);
+    }
+    private void Move()
+    {
+        stateMachine.Monster.Agent.SetDestination(stateMachine.Target.transform.position);
+        Rotate(stateMachine.Target.transform.position - stateMachine.Monster.transform.position);
     }
 
-    public void Exit()
+    private void Rotate(Vector3 direction)
     {
-        throw new System.NotImplementedException();
-    }
+        Debug.Log("dmdkdkk");
+        if (direction != Vector3.zero)
+        {
+            direction.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-    public void HandleInput()
-    {
-        throw new System.NotImplementedException();
+            stateMachine.Monster.transform.rotation = Quaternion.Slerp(stateMachine.Monster.transform.rotation, targetRotation, stateMachine.RotationDamping * Time.deltaTime);
+        }
     }
-
-    public void PhysicsUpdate()
+    protected bool IsInChaseRange()
     {
-        throw new System.NotImplementedException();
+        if(stateMachine.Target.IsDead) 
+        { 
+            stateMachine.Monster.enabled = false; 
+            return false;
+        }  
+        float playerDistanceSqr = (stateMachine.Target.transform.position - stateMachine.Monster.transform.position).sqrMagnitude;
+        return playerDistanceSqr <= stateMachine.Monster.Data.PlayerChasingRange * stateMachine.Monster.Data.PlayerChasingRange;
     }
-
-    public void Update()
-    {
-        throw new System.NotImplementedException();
-    }
+    #endregion
 }
