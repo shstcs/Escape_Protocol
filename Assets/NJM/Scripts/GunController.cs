@@ -27,9 +27,12 @@ public class GunController : MonoBehaviour
 
     void Update()
     {
-        GunFireRateCalc();
-        TryFire();
-        TryReload();
+        if(Time.timeScale != 0)     // 옵션창에서 총알 발사하지 않도록 조정 - 연호
+        {
+            GunFireRateCalc();
+            TryFire();
+            TryReload();
+        }
     }
 
     private void GunFireRateCalc()
