@@ -5,13 +5,17 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth = 100;
+    [SerializeField] private float _maxHealth = 100f;
     [SerializeField] private float _healthRegenerationRate = 0.5f;
-    [SerializeField] private float _alphaDecreaseRate = 30f;
-    [SerializeField] private Image _hitImage;
-    private bool _isDecreasingAlpha = false;
+
     private float _health;
     public event Action OnDie;
+
+    public float Health
+    {
+        get { return _health; }
+        private set { _health = value; }
+    }
 
     public bool IsDead => _health == 0;
 
@@ -28,11 +32,6 @@ public class PlayerHealth : MonoBehaviour
             StartHealthRegeneration();
         }
         //Debug.Log(_health);
-
-        if (_isDecreasingAlpha)
-        {
-            StartDecreaseAlpha();
-        }
     }
 
     private void ResetHealth()
@@ -43,11 +42,6 @@ public class PlayerHealth : MonoBehaviour
     private void StartHealthRegeneration()
     {
         StartCoroutine(HealthRegeneration());
-    }
-
-    private void StartDecreaseAlpha()
-    {
-        StartCoroutine(DecreaseAlphaOverTimeCoroutine());
     }
 
     private IEnumerator HealthRegeneration()
@@ -65,17 +59,6 @@ public class PlayerHealth : MonoBehaviour
             yield return new WaitForSeconds(1f); // 1초마다 체크
         }
     }
-
-    private void SetHitImageAlpha(float alpha)
-    {
-        if (_hitImage != null)
-        {
-            Color imageColor = _hitImage.color;
-            imageColor.a = alpha;
-            _hitImage.color = imageColor;
-        }
-    }
-
 
     private void TakeDamage(int damage)
     {
@@ -97,24 +80,7 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(50);
 
-            // 스프라이트 알파값을 70/255에서 줄어들게 설정
-            SetHitImageAlpha(0.27f);
-            _isDecreasingAlpha = true;
-
             Debug.Log("적과 충돌! 현재 체력은 : " + _health);
         }
-    }
-
-    private IEnumerator DecreaseAlphaOverTimeCoroutine()
-    {
-        while (_hitImage.color.a > 0)
-        {
-            float alphaValue = Mathf.Clamp01(_hitImage.color.a - Time.deltaTime * (_alphaDecreaseRate / 255f));
-            SetHitImageAlpha(alphaValue);
-
-            yield return null;
-        }
-
-        _isDecreasingAlpha = false; // 알파값이 0이 되면 코루틴 종료
     }
 }

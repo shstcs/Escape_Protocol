@@ -13,15 +13,15 @@ public interface IInteractable
 
 public class InteractionManager : MonoBehaviour
 {
-    public float checkRate = 0.05f;
+    [SerializeField] private float checkRate = 0.05f;
     private float lastCheckTime;
-    public float maxCheckDistance;
-    public LayerMask layerMask;
+    [SerializeField] private float maxCheckDistance;
+    [SerializeField] private LayerMask layerMask;
 
     private GameObject curInteractGameobject;
     private IInteractable curInteractable;
 
-    public TextMeshProUGUI promptText;
+    [SerializeField] private TextMeshProUGUI promptText;
     private Camera camera;
 
     private void Start()
@@ -59,7 +59,8 @@ public class InteractionManager : MonoBehaviour
     private void SetPromptText()
     {
         promptText.gameObject.SetActive(true);
-        promptText.text = string.Format("<b>[E]</b> {0}", curInteractable.GetInteractPrompt());
+        // 키보드 K를 누르면 열쇠 획득 가능
+        promptText.text = string.Format("<b>[K]</b> {0}", curInteractable.GetInteractPrompt());
     }
 
     public void OnInteractInput(InputAction.CallbackContext callbackContext)

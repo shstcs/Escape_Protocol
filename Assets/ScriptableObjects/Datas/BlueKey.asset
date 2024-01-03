@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8811b345efe6d6f41bc18b0cd5b30776, type: 3}
   m_Name: BlueKey
   m_EditorClassIdentifier: 
-  _displayName: 
-  _description: 
-  _type: 0
+  _displayName: BlueKey
+  _description: BlueKey
+  _type: 2
   _icon: {fileID: 0}
   _dropPrefab: {fileID: 0}
   _itemPosition: {x: 0, y: 0, z: 0}

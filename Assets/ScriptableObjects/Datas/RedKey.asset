@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8811b345efe6d6f41bc18b0cd5b30776, type: 3}
   m_Name: RedKey
   m_EditorClassIdentifier: 
-  _displayName: 
-  _description: 
+  _displayName: RedKey
+  _description: RedKey
   _type: 0
   _icon: {fileID: 0}
   _dropPrefab: {fileID: 0}
