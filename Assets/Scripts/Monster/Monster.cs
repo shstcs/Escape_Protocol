@@ -27,4 +27,28 @@ public class Monster : MonoBehaviour
 
         stateMachine = new MonsterStateMachine(this);
     }
+
+    private void Start()
+    {
+        stateMachine.ChangeState(stateMachine.IdleState);
+    }
+
+    private void Update()
+    {
+        stateMachine.HandleInput();
+        stateMachine.Update();
+        if(IsInAttackRange())
+        {
+            stateMachine.Target.TakeDamage(Data.Damage);
+        }
+    }
+    private void FixedUpdate()
+    {
+        stateMachine.PhysicsUpdate();
+    }
+    private bool IsInAttackRange()
+    {
+        float playerDistanceSqr = (stateMachine.Target.transform.position - transform.position).sqrMagnitude;
+        return playerDistanceSqr <= Data.AttackRange * Data.AttackRange;
+    }
 }

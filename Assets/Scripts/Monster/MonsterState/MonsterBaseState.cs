@@ -6,17 +6,15 @@ using UnityEngine.UIElements;
 public class MonsterBaseState : IState
 {
     protected MonsterStateMachine stateMachine;
-    protected readonly MonsterGroundData monsterGroundData;
 
     #region IState
     public MonsterBaseState(MonsterStateMachine enemyStateMachine)
     {
         stateMachine = enemyStateMachine;
-        monsterGroundData = stateMachine.Monster.Data.MonsterGroundData;
     }
     public virtual void Enter()
     {
-
+        stateMachine.Monster.Agent.speed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier;
     }
     public virtual void Exit()
     {
@@ -46,16 +44,13 @@ public class MonsterBaseState : IState
     }
     private void Move()
     {
-        Vector3 movementDirection = GetMovementDireciton();
-        Rotate(movementDirection);
         stateMachine.Monster.Agent.SetDestination(stateMachine.Target.transform.position);
+        Rotate(stateMachine.Target.transform.position - stateMachine.Monster.transform.position);
     }
-    private Vector3 GetMovementDireciton()
-    {
-        return (stateMachine.Target.transform.position - stateMachine.Monster.transform.position).normalized;
-    }
+
     private void Rotate(Vector3 direction)
     {
+        Debug.Log("dmdkdkk");
         if (direction != Vector3.zero)
         {
             direction.y = 0;
@@ -64,13 +59,13 @@ public class MonsterBaseState : IState
             stateMachine.Monster.transform.rotation = Quaternion.Slerp(stateMachine.Monster.transform.rotation, targetRotation, stateMachine.RotationDamping * Time.deltaTime);
         }
     }
-    protected float GetMovementSpeed()
-    {
-        float movementSpeed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier;
-        return movementSpeed;
-    }
     protected bool IsInChaseRange()
     {
+        if(stateMachine.Target.IsDead) 
+        { 
+            stateMachine.Monster.enabled = false; 
+            return false;
+        }  
         float playerDistanceSqr = (stateMachine.Target.transform.position - stateMachine.Monster.transform.position).sqrMagnitude;
         return playerDistanceSqr <= stateMachine.Monster.Data.PlayerChasingRange * stateMachine.Monster.Data.PlayerChasingRange;
     }

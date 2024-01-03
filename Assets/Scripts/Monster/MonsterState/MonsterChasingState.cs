@@ -11,7 +11,7 @@ public class MonsterChasingState : MonsterBaseState
 
     public override void Enter()
     {
-        stateMachine.MovementSpeedModifier = 1;
+        stateMachine.MovementSpeedModifier = 1.5f;
         base.Enter();
         StartAnimation(stateMachine.Monster.AnimationData.GroundParameterHash);
         StartAnimation(stateMachine.Monster.AnimationData.RunParameterHash);
@@ -27,7 +27,7 @@ public class MonsterChasingState : MonsterBaseState
     public override void Update()
     {
         base.Update();
-        if(!IsInChaseRange())
+        if (!IsInChaseRange())
         {
             stateMachine.ChangeState(stateMachine.WanderingState); 
             return;

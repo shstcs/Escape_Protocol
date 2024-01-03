@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
 public class MonsterAnimationData
 {
     [SerializeField] private string groundParameterName = "@Ground";
