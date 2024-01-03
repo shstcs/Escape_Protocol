@@ -1,13 +1,21 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth = 100;
+    [SerializeField] private float _maxHealth = 100f;
     [SerializeField] private float _healthRegenerationRate = 0.5f;
+
     private float _health;
     public event Action OnDie;
+
+    public float Health
+    {
+        get { return _health; }
+        private set { _health = value; }
+    }
 
     public bool IsDead => _health == 0;
 
@@ -23,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
         {
             StartHealthRegeneration();
         }
-        Debug.Log(_health);
+        //Debug.Log(_health);
     }
 
     private void ResetHealth()
@@ -31,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
         _health = _maxHealth;
     }
 
-    public void StartHealthRegeneration()
+    private void StartHealthRegeneration()
     {
         StartCoroutine(HealthRegeneration());
     }
@@ -47,15 +55,12 @@ public class PlayerHealth : MonoBehaviour
                 {
                     _health = 100f;
                 }
-                //float amountToRegenerate = Time.deltaTime / _regenerationRate;
-                //_health = Mathf.Min(_health + amountToRegenerate, _maxHealth);
-                //Debug.Log("체력 회복: " + _health);
             }
             yield return new WaitForSeconds(1f); // 1초마다 체크
         }
     }
 
-    public void TakeDamage(int damage)
+    private void TakeDamage(int damage)
     {
         if (_health <= 0) return;
 
@@ -66,10 +71,6 @@ public class PlayerHealth : MonoBehaviour
             OnDie?.Invoke();
             Debug.Log("죽었어요.");
         }
-        //else if (_health > 0 && _health < _maxHealth)
-        //{
-        //    StartHealthRegeneration();
-        //}
     }
 
     // 테스트용
@@ -78,6 +79,7 @@ public class PlayerHealth : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             TakeDamage(50);
+
             Debug.Log("적과 충돌! 현재 체력은 : " + _health);
         }
     }

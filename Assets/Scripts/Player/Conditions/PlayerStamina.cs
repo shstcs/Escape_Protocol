@@ -52,7 +52,6 @@ public class PlayerStamina : MonoBehaviour
     public void StartStaminaRegeneration()
     {
         StartCoroutine(StaminaRegeneration());
-        //Debug.Log("코루틴시작");
     }
 
     private IEnumerator StaminaRegeneration()
@@ -64,8 +63,6 @@ public class PlayerStamina : MonoBehaviour
             {
                 CurrentStamina = 100f;
             }
-            //float amountToRegenerate = Time.deltaTime * _staminaRegenerationRate;
-            //CurrentStamina = Mathf.Min(CurrentStamina + amountToRegenerate, _maxStamina);
             yield return new WaitForSeconds(1f);
         }
     }
