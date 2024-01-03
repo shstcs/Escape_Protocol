@@ -5491,7 +5491,7 @@ MonoBehaviour:
   lineMovement: {fileID: 6717268933128917294}
   lineCombat: {fileID: 5966342848558407230}
   lineGeneral: {fileID: 1139991739945271582}
-  waitForInput: 1
+  waitForInput: 0
   loadingMenu: {fileID: 4630709644625323948}
   loadingBar: {fileID: 1981211169436535435}
   loadPromptText: {fileID: 4929965724755497458}
@@ -8644,8 +8644,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6491941808836684654}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadScene
+        m_TargetAssemblyTypeName: UI_MenuPanel, Assembly-CSharp
+        m_MethodName: LoadStage1
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20553,7 +20553,7 @@ Transform:
   - {fileID: 441850185567339852}
   - {fileID: 6558762762301984723}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7222690874686117238
 GameObject:
@@ -25301,7 +25301,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8120549485906268889}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6491941808836684654}
+        m_TargetAssemblyTypeName: UI_MenuPanel, Assembly-CSharp
+        m_MethodName: LoadStage2
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: YH-MainScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8201196598648878552
 MonoBehaviour:
   m_ObjectHideFlags: 0

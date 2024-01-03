@@ -56,8 +56,6 @@ public class UI_MenuPanel : MonoBehaviour
     public GameObject lineGeneral;
 
     [Header("LOADING SCREEN")]
-    [Tooltip("If this is true, the loaded scene won't load until receiving user input")]
-    public bool waitForInput = true;
     public GameObject loadingMenu;
     [Tooltip("The loading bar Slider UI element in the Loading Screen")]
     public Slider loadingBar;
@@ -80,20 +78,13 @@ public class UI_MenuPanel : MonoBehaviour
         exitMenu.SetActive(false);
         firstMenu.SetActive(true);
         mainMenu.SetActive(true);
-
+        Main.Game.IsClear = false;
     }
 
     public void PlayCampaign()
     {
         exitMenu.SetActive(false);
         playMenu.SetActive(true);
-    }
-
-    public void PlayCampaignMobile()
-    {
-        exitMenu.SetActive(false);
-        playMenu.SetActive(true);
-        mainMenu.SetActive(false);
     }
 
     public void ReturnMenu()
@@ -103,12 +94,22 @@ public class UI_MenuPanel : MonoBehaviour
         mainMenu.SetActive(true);
     }
 
-    public void LoadScene(string scene)
+    public void LoadStage1(string scene)
     {
         if (scene != "")
         {
+
             StartCoroutine(LoadAsynchronously(scene));
         }
+    }
+
+    public void LoadStage2(string scene)
+    {
+        if (scene != "" && Main.Game.IsStage1Clear)
+        {
+            StartCoroutine(LoadAsynchronously(scene));
+        }
+        else Debug.Log("1단계를 클리어하지 않았습니다.");
     }
 
     public void DisablePlayCampaign()
@@ -222,18 +223,6 @@ public class UI_MenuPanel : MonoBehaviour
         DisablePlayCampaign();
     }
 
-    public void AreYouSureMobile()
-    {
-        exitMenu.SetActive(true);
-        mainMenu.SetActive(false);
-        DisablePlayCampaign();
-    }
-
-    public void ExtrasMenu()
-    {
-        playMenu.SetActive(false);
-        exitMenu.SetActive(false);
-    }
 
     public void QuitGame()
     {
@@ -257,17 +246,7 @@ public class UI_MenuPanel : MonoBehaviour
             float progress = Mathf.Clamp01(operation.progress / .95f);
             loadingBar.value = progress;
 
-            if (operation.progress >= 0.9f && waitForInput)
-            {
-                loadPromptText.text = "Press " + userPromptKey.ToString().ToUpper() + " to continue";
-                loadingBar.value = 1;
-
-                if (Input.GetKeyDown(userPromptKey))
-                {
-                    operation.allowSceneActivation = true;
-                }
-            }
-            else if (operation.progress >= 0.9f && !waitForInput)
+            if (operation.progress >= 0.9f)
             {
                 operation.allowSceneActivation = true;
             }

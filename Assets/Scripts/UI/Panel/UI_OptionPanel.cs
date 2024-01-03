@@ -7,7 +7,7 @@ public class UI_OptionPanel : MonoBehaviour
 {
     private void Start()
     {
-        Time.timeScale = 0.0f;
+        StartCoroutine(nameof(TimeStopDelay));
     }
 
     public void ReturnToMenu(string sceneName)
@@ -19,6 +19,13 @@ public class UI_OptionPanel : MonoBehaviour
     public void CancelOptionPanel()
     {
         Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
         Destroy(gameObject);
+    }
+
+    private IEnumerator TimeStopDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Time.timeScale = 0;
     }
 }
