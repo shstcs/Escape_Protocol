@@ -17,12 +17,13 @@ public class UI_HUDPanel : MonoBehaviour
     [SerializeField] private Image _damagedbackground;
     [SerializeField] private TMP_Text _usedBullet;
 
-    [Header("Quest")]
-    [SerializeField] private TMP_Text _questText;
+    private UI_Quest _quest;
 
     private Player _player;
     private PlayerHealth _health;
     private Gun _gun;
+
+    private Color _staminaColor;
 
     private void Awake()
     {
@@ -33,7 +34,11 @@ public class UI_HUDPanel : MonoBehaviour
 
     private void Start()
     {
-        //액션들 추가
+        Image img = Resources.Load<Image>("UI\\QuestBox");
+        _quest = Instantiate(img).GetComponent<UI_Quest>();
+        _quest.transform.SetParent(transform.Find("QuestLayout"));
+
+        _staminaColor = _staminaBar.color;
     }
 
     private void Update()
@@ -47,7 +52,7 @@ public class UI_HUDPanel : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.O))
             {
                 Debug.Log("Show Over Window");
-                Canvas overPanel = Resources.Load<Canvas>("UI\\StageOverPanel");
+                Canvas overPanel = Resources.Load<Canvas>("UI\\Panel\\StageOverPanel");
                 Instantiate(overPanel);
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -73,7 +78,10 @@ public class UI_HUDPanel : MonoBehaviour
 
     private void ChangeBullet()
     {
+        string old = _bulletText.text;
+
         _bulletText.text = _gun.CurrentBulletCount.ToString() + " / " + _gun.CarryBulletCount.ToString();
+        if (old != _bulletText.text) StartCoroutine(nameof(ShowUseBullet));
     }
 
     private void ChangeHP()
@@ -83,14 +91,16 @@ public class UI_HUDPanel : MonoBehaviour
 
     private void ChangeStamina()
     {
+        float old = _staminaBar.fillAmount;
         _staminaBar.fillAmount = _player.Stamina.CurrentStamina / 100f;
         _staminaText.text = _player.Stamina.CurrentStamina.ToString("F0");
+        _staminaBar.color = old > _staminaBar.fillAmount ? new Color(.7f, 1, .7f) : _staminaColor;
     }
 
     public void ShowOptionPanel()
     {
         Debug.Log("Show Option Window");
-        Canvas optionPanel = Resources.Load<Canvas>("UI\\OptionPanel");
+        Canvas optionPanel = Resources.Load<Canvas>("UI\\Panel\\OptionPanel");
         Instantiate(optionPanel);
     }
 
@@ -127,4 +137,5 @@ public class UI_HUDPanel : MonoBehaviour
         }
         Destroy(_bulletEffect);
     }
+
 }
