@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     public PlayerStamina Stamina { get; private set; }
 
+    [field:SerializeField] public Gun Gun { get; private set; }
+
     private void Awake()
     {
         Input = GetComponent<PlayerInput>();
