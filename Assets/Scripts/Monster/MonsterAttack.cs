@@ -23,9 +23,9 @@ public class MonsterAttack : MonoBehaviour
 
         myColliders.Add(other);
 
-        if(other.TryGetComponent(out PlayerHealth health))
+        if(other.TryGetComponent(out PlayerHealth _health))
         {
-            
+            _health.TakeDamage(40);
         }
     }
 }

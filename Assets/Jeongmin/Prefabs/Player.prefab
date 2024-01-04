@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 7977597835221854467}
   - component: {fileID: 8363094109130881995}
   - component: {fileID: 9096300276896708339}
+  - component: {fileID: 9204706506148379310}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,6 +55,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Data>k__BackingField: {fileID: 11400000, guid: 6ec9f64d7ad10fd4699294d9af7301d1, type: 2}
+  <Gun>k__BackingField: {fileID: 0}
+  <GunController>k__BackingField: {fileID: 0}
 --- !u!114 &8406226517484676791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkRate: 0.05
-  maxCheckDistance: 4
+  maxCheckDistance: 3
   layerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -219,6 +222,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &9204706506148379310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241428691188650152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588d595f2d5cade4f807de76b5139d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3692419516178188225
 GameObject:
   m_ObjectHideFlags: 0
