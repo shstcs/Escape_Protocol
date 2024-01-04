@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UI_OptionPanel : MonoBehaviour
 {
     private void Start()
     {
         StartCoroutine(nameof(TimeStopDelay));
+
     }
 
     public void ReturnToMenu(string sceneName)
@@ -22,6 +24,18 @@ public class UI_OptionPanel : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Destroy(gameObject);
     }
+
+    public void ControlVolumeSlider(Slider musicSlider)
+    {
+        PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
+    }
+
+    public void ControlVolume()
+    {
+        GameObject _sound = GameObject.Find("BackgroundMusic");
+        _sound.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
+    }
+
 
     private IEnumerator TimeStopDelay()
     {

@@ -89,7 +89,7 @@ public class UI_HUDPanel : MonoBehaviour
         float old = _hpBar.fillAmount;
         _hpBar.fillAmount = _health.Health / 100;
         _hpText.text = _health.Health.ToString("F0");
-        _hpBar.color = old > _hpBar.fillAmount ? new Color(1, .7f, .7f) : _hpColor;
+        if( old > _hpBar.fillAmount) StartCoroutine(nameof(HpDamaged));
     }
 
     private void ChangeStamina()
@@ -131,6 +131,12 @@ public class UI_HUDPanel : MonoBehaviour
             yield return null;
         }
         _damagedbackground.color = origin;
+    }
+    private IEnumerator HpDamaged()
+    {
+        _hpBar.color = new Color(1, .7f, .7f);
+        yield return new WaitForSeconds(1);
+        _hpBar.color = _hpColor;
     }
 
     private IEnumerator ShowUseBullet()
