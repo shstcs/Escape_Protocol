@@ -11,7 +11,7 @@ public class UI_SettingsPanel : MonoBehaviour
     public GameObject texturelowtextLINE;
     public GameObject texturemedtextLINE;
     public GameObject texturehightextLINE;
-    public GameObject cameraeffectstext;
+    public GameObject guneffectstext;
 
     [Header("GAME SETTINGS")]
     public GameObject difficultynormaltext;
@@ -20,8 +20,6 @@ public class UI_SettingsPanel : MonoBehaviour
     public GameObject difficultyhardcoretextLINE;
 
     [Header("CONTROLS SETTINGS")]
-    public GameObject invertmousetext;
-
     // sliders
     public GameObject musicSlider;
     public GameObject sensitivityXSlider;
@@ -64,16 +62,6 @@ public class UI_SettingsPanel : MonoBehaviour
             fullscreentext.GetComponent<TMP_Text>().text = "off";
         }
 
-        // check mouse inverse
-        if (PlayerPrefs.GetInt("Inverted") == 0)
-        {
-            invertmousetext.GetComponent<TMP_Text>().text = "off";
-        }
-        else if (PlayerPrefs.GetInt("Inverted") == 1)
-        {
-            invertmousetext.GetComponent<TMP_Text>().text = "on";
-        }
-
         // check texture quality
         if (PlayerPrefs.GetInt("Textures") == 0)
         {
@@ -96,6 +84,9 @@ public class UI_SettingsPanel : MonoBehaviour
             texturemedtextLINE.gameObject.SetActive(false);
             texturehightextLINE.gameObject.SetActive(true);
         }
+
+        //check gun effect
+        guneffectstext.GetComponent<TMP_Text>().text = PlayerPrefs.GetInt("GunEffects") == 0 ? "off" : "on";
     }
 
     public void Update()
@@ -122,7 +113,6 @@ public class UI_SettingsPanel : MonoBehaviour
 
     public void MusicSlider()
     {
-        //PlayerPrefs.SetFloat("MusicVolume", sliderValue);
         PlayerPrefs.SetFloat("MusicVolume", musicSlider.GetComponent<Slider>().value);
     }
 
@@ -158,31 +148,17 @@ public class UI_SettingsPanel : MonoBehaviour
         PlayerPrefs.SetInt("HardCoreDifficulty", 1);
     }
 
-    public void InvertMouse()
+    public void GunEffects()
     {
-        if (PlayerPrefs.GetInt("Inverted") == 0)
+        if (PlayerPrefs.GetInt("GunEffects") == 0)
         {
-            PlayerPrefs.SetInt("Inverted", 1);
-            invertmousetext.GetComponent<TMP_Text>().text = "on";
+            PlayerPrefs.SetInt("GunEffects", 1);
+            guneffectstext.GetComponent<TMP_Text>().text = "on";
         }
-        else if (PlayerPrefs.GetInt("Inverted") == 1)
+        else if (PlayerPrefs.GetInt("GunEffects") == 1)
         {
-            PlayerPrefs.SetInt("Inverted", 0);
-            invertmousetext.GetComponent<TMP_Text>().text = "off";
-        }
-    }
-
-    public void CameraEffects()
-    {
-        if (PlayerPrefs.GetInt("CameraEffects") == 0)
-        {
-            PlayerPrefs.SetInt("CameraEffects", 1);
-            cameraeffectstext.GetComponent<TMP_Text>().text = "on";
-        }
-        else if (PlayerPrefs.GetInt("CameraEffects") == 1)
-        {
-            PlayerPrefs.SetInt("CameraEffects", 0);
-            cameraeffectstext.GetComponent<TMP_Text>().text = "off";
+            PlayerPrefs.SetInt("GunEffects", 0);
+            guneffectstext.GetComponent<TMP_Text>().text = "off";
         }
     }
 

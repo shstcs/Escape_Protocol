@@ -80,7 +80,7 @@ public class PlayerBaseState : IState
     {
         Vector3 movementDirection = GetMovementDirection();
 
-        Rotate(movementDirection);
+        //Rotate(movementDirection);
 
         Move(movementDirection);
     }
