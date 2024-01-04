@@ -1074,7 +1074,6 @@ GameObject:
   - component: {fileID: 1608073337037201112}
   - component: {fileID: 7175666126999614556}
   - component: {fileID: 285495352176922928}
-  - component: {fileID: 2584503662541018746}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Enemy
@@ -1220,20 +1219,6 @@ MonoBehaviour:
   _maxHealth: 100
   _healthRegenerationRate: 5
   IsDead: 1
---- !u!114 &2584503662541018746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6890217833422715545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43648f29808bb7e4d9176cc5f1664f2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 1758361009772061240}
-  _drag: 0.3
 --- !u!1 &7347244177468673359
 GameObject:
   m_ObjectHideFlags: 0

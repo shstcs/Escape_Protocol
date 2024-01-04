@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8363094109130881995}
   - component: {fileID: 9096300276896708339}
   - component: {fileID: 9204706506148379310}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1856800265283967215}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraLookPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 6749974470783803069}
   - component: {fileID: 8138325916595670923}
   - component: {fileID: 4029117370015663941}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

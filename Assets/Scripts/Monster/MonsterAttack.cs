@@ -6,9 +6,6 @@ public class MonsterAttack : MonoBehaviour
 {
     [SerializeField] private Collider myCollider;
 
-    private int damage;
-    private float knockback;
-
     private List<Collider> myColliders = new List<Collider>();
 
     private void OnEnable()
@@ -25,7 +22,13 @@ public class MonsterAttack : MonoBehaviour
 
         if(other.TryGetComponent(out PlayerHealth _health))
         {
-            _health.TakeDamage(40);
+            _health.TakeDamage(50);
+            Debug.Log(_health.ToString());
+        }
+        if(other.TryGetComponent(out ForceReceiver _forceReceiver))
+        {
+            Vector3 direction = (other.transform.position - myCollider.transform.position).normalized;
+            _forceReceiver.AddForce(direction*2f);
         }
     }
 }

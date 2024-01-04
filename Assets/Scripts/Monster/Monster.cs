@@ -45,5 +45,8 @@ public class Monster : MonoBehaviour
     {
         stateMachine.PhysicsUpdate();
     }
-
+    private void OnAttack()
+    {
+        stateMachine.Target.TakeDamage(50);
+    }
 }
