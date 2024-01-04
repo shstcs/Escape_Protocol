@@ -65,7 +65,7 @@ public class GunController : MonoBehaviour
         _currentGun.CurrentBulletCount--;
         _currentFireRate = _currentGun.FireRate;
         PlaySE(_currentGun.Fire_Sound);
-        _currentGun.MuzzleFlash.Play();
+        if (PlayerPrefs.GetInt("GunEffects") == 1) _currentGun.MuzzleFlash.Play();
         _currentGun.Anim.SetTrigger("Fire");
 
         // 피격 처리
