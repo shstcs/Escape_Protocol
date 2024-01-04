@@ -13,7 +13,7 @@ public class MonsterStateMachine : StateMachine
     public MonsterDeadState DeadState { get; }
     public MonsterAwakeState AwakeState { get; }
     public Vector2 MonementInput { get; set; }
-    public float MovementSpeed { get; } = 4f;
+    public float MovementSpeed { get; } = PlayerPrefs.GetInt("NormalDifficulty") == 1 ? 4f : 6f;      //난이도 상승시 몬스터 속도 증가(연호)
     public float RotationDamping { get; set; } = 1f;
     public float MovementSpeedModifier { get; set; } = 1f;
     

@@ -26,16 +26,17 @@ public class Main : MonoBehaviour
                     obj.AddComponent<AudioSource>();
                     DontDestroyOnLoad(obj);
                     _instance = obj.GetComponent<Main>();
-                    _instance._game = GameObject.FindObjectOfType<GameManager>();
+                    //_instance._game = GameObject.FindObjectOfType<GameManager>();
                 }
             }
             return _instance;
         }
     }
     #endregion
+
     //new 쓰지 말 것
     private UIManager _ui = new();
-    private GameManager _game;
+    private GameManager _game = new();
     private SoundManager _sound = new SoundManager();
     private Player _player;
 

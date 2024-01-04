@@ -156,7 +156,6 @@ public class UI_SettingsPanel : MonoBehaviour
         difficultyhardcoretextLINE.gameObject.SetActive(false);
         difficultynormaltextLINE.gameObject.SetActive(true);
         PlayerPrefs.SetInt("NormalDifficulty", 1);
-        PlayerPrefs.SetInt("HardCoreDifficulty", 0);
     }
 
     public void HardcoreDifficulty()
@@ -164,7 +163,6 @@ public class UI_SettingsPanel : MonoBehaviour
         difficultyhardcoretextLINE.gameObject.SetActive(true);
         difficultynormaltextLINE.gameObject.SetActive(false);
         PlayerPrefs.SetInt("NormalDifficulty", 0);
-        PlayerPrefs.SetInt("HardCoreDifficulty", 1);
     }
 
     public void GunEffects()

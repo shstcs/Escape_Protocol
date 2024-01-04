@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.634
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.24642733, g: 0.2826896, b: 0.30938378, a: 0.634}
+  m_IndirectSpecularColor: {r: 0.24639153, g: 0.2826927, b: 0.30936137, a: 0.634}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6473,6 +6473,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9206298937141399418, guid: cb8349b4ecaaa7248a061f8deca895e2, type: 3}
   m_PrefabInstance: {fileID: 1231266002}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &263045502 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8003986898732921125, guid: cb8349b4ecaaa7248a061f8deca895e2, type: 3}
+  m_PrefabInstance: {fileID: 1231266002}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c2c40e911c59d409f47060229cbb23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &263987026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26486,7 +26497,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1048282227
 GameObject:
@@ -30814,7 +30825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9206298937141399418, guid: cb8349b4ecaaa7248a061f8deca895e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.12000084
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9206298937141399418, guid: cb8349b4ecaaa7248a061f8deca895e2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30822,7 +30833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9206298937141399418, guid: cb8349b4ecaaa7248a061f8deca895e2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.3699999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9206298937141399418, guid: cb8349b4ecaaa7248a061f8deca895e2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -47466,6 +47477,10 @@ PrefabInstance:
       propertyPath: <Gun>k__BackingField
       value: 
       objectReference: {fileID: 1231266003}
+    - target: {fileID: 2508424852754309659, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
+      propertyPath: <GunController>k__BackingField
+      value: 
+      objectReference: {fileID: 263045502}
     - target: {fileID: 5236472927486222832, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
       propertyPath: m_RootOrder
       value: 2
