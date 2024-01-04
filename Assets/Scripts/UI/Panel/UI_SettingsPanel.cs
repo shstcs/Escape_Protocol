@@ -31,7 +31,10 @@ public class UI_SettingsPanel : MonoBehaviour
     private float sliderValueYSensitivity = 0.0f;
     private float sliderValueSmoothing = 0.0f;
 
-
+    [Header("Key Binding")]
+    public GameObject keyConfirm;
+    private bool waitForKey;
+    private TMP_Text curKeyText;
     public void Start()
     {
         // check difficulty
@@ -91,10 +94,26 @@ public class UI_SettingsPanel : MonoBehaviour
 
     public void Update()
     {
-        //sliderValue = musicSlider.GetComponent<Slider>().value;
         sliderValueXSensitivity = sensitivityXSlider.GetComponent<Slider>().value;
         sliderValueYSensitivity = sensitivityYSlider.GetComponent<Slider>().value;
         sliderValueSmoothing = mouseSmoothSlider.GetComponent<Slider>().value;
+        if (waitForKey)
+        {
+            if (Input.anyKeyDown)
+            {
+                foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
+                {
+                    if (Input.GetKeyDown(keyCode))
+                    {
+                        Debug.Log("Pressed key: " + keyCode);
+                        keyConfirm.SetActive(false);
+                        curKeyText.text = keyCode.ToString();
+                        waitForKey = false;
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     public void FullScreen()
@@ -188,4 +207,12 @@ public class UI_SettingsPanel : MonoBehaviour
         texturemedtextLINE.gameObject.SetActive(false);
         texturehightextLINE.gameObject.SetActive(true);
     }
+
+    public void BindingKey(TMP_Text keyText)
+    {
+        curKeyText = keyText;
+        waitForKey = true;
+        keyConfirm.SetActive(true);
+    }
 }
+
