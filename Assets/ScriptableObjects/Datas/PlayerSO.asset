@@ -19,3 +19,9 @@ MonoBehaviour:
     <RunSpeedModifier>k__BackingField: 1
   <AirData>k__BackingField:
     <JumpForce>k__BackingField: 6
+  <AttakData>k__BackingField:
+    <AttackInfoDatas>k__BackingField:
+    - <AttackName>k__BackingField: Gun
+      <ForceTransitionTime>k__BackingField: 0.1
+      <Force>k__BackingField: 2
+      <Damage>k__BackingField: 50

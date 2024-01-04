@@ -11,6 +11,8 @@ public class GunController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
     public bool IsFindSightMode { get; private set; }
 
+    private PlayerAttack _playerAttack;
+
     private CinemachinePOV _pov;
     private AudioSource _audioSource;  // 발사 소리 재생기
     private RaycastHit _hitInfo;  // 총알의 충돌 정보
@@ -24,7 +26,7 @@ public class GunController : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         _pov = _virtualCamera.GetCinemachineComponent<CinemachinePOV>();
-        
+        _playerAttack = GameObject.Find("Player").GetComponent<PlayerAttack>();
     }
 
     private void Start()
@@ -112,7 +114,11 @@ public class GunController : MonoBehaviour
                 GameObject clone = Instantiate(_currentGun.HitEffectPrefab, _hitInfo.point, Quaternion.LookRotation(_hitInfo.normal));
 
                 Debug.Log(_hitInfo.transform.name);
-
+                if (_hitInfo.transform.name == "Monster")
+                {
+                    _playerAttack.Attack();
+                    Debug.Log("총알이 몬스터한테 맞았네요");
+                }
             }
         }
         else // 정조준 상태
@@ -121,8 +127,13 @@ public class GunController : MonoBehaviour
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward + randomRangeFineSight, out _hitInfo, _currentGun.Range)) // 카메라 월드좌표
             {
                 GameObject clone = Instantiate(_currentGun.HitEffectPrefab, _hitInfo.point, Quaternion.LookRotation(_hitInfo.normal));
-
+                
                 Debug.Log(_hitInfo.transform.name);
+                if (_hitInfo.transform.name == "Monster")
+                {
+                    _playerAttack.Attack();
+                    Debug.Log("총알이 몬스터한테 맞았어요");
+                }
             }
         }
 
