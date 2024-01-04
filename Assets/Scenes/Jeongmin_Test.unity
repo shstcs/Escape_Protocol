@@ -26486,7 +26486,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1048282227
 GameObject:
@@ -34700,17 +34700,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster
       objectReference: {fileID: 0}
-    - target: {fileID: 6890217833422715545, guid: 5b8e69054168c67409c500f7ebf24fa9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6890217833422715545, guid: 5b8e69054168c67409c500f7ebf24fa9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1947357064}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b8e69054168c67409c500f7ebf24fa9, type: 3}
 --- !u!1 &1373646862
 GameObject:
@@ -47459,6 +47452,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2241428691188650152, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2241428691188650152, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -47466,6 +47463,10 @@ PrefabInstance:
       propertyPath: <Gun>k__BackingField
       value: 
       objectReference: {fileID: 1231266003}
+    - target: {fileID: 3692419516178188225, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5236472927486222832, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -47509,6 +47510,18 @@ PrefabInstance:
     - target: {fileID: 5236472927486222832, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853103462644111840, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853103462644111840, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853103462644111840, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8363094109130881995, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
       propertyPath: promptText
@@ -54068,30 +54081,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 145489941708477456, guid: f3666c4739f55c24eb42ed8d7b508700, type: 3}
   m_PrefabInstance: {fileID: 1946329392}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1947357058 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6890217833422715545, guid: 5b8e69054168c67409c500f7ebf24fa9, type: 3}
-  m_PrefabInstance: {fileID: 1373320470}
-  m_PrefabAsset: {fileID: 0}
---- !u!143 &1947357061 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 1758361009772061240, guid: 5b8e69054168c67409c500f7ebf24fa9, type: 3}
-  m_PrefabInstance: {fileID: 1373320470}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1947357064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947357058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43648f29808bb7e4d9176cc5f1664f2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 1947357061}
-  _drag: 0.3
 --- !u!4 &1948287500 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8616490787709139147, guid: d96e3ff0793bd824fb6771e987a80a35, type: 3}
