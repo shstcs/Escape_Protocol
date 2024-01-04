@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public UnityAction OnStageStart;
     public UnityAction OnStageOver;
     public UnityAction OnKeyGet;
+    public UnityAction OnDoorOpen;
 
     private PlayerHealth _health;
     private UI_HUDPanel _uiHUD;
@@ -26,6 +27,11 @@ public class GameManager : MonoBehaviour
     public void CallkeyGet()
     {
         OnKeyGet?.Invoke();
+    }
+
+    public void CallDoorOpen()
+    {
+        OnDoorOpen?.Invoke();
     }
     private void Awake()
     {

@@ -29,6 +29,7 @@ public class ItemObject : MonoBehaviour, IInteractable
                 break;
         }
         Debug.Log(Main.Player.KeyCheck.Blue + " " + Main.Player.KeyCheck.Green + " " + Main.Player.KeyCheck.Red);
+        Main.Game.CallkeyGet();
         Destroy(gameObject);
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UI_HUDPanel : MonoBehaviour
@@ -35,12 +36,11 @@ public class UI_HUDPanel : MonoBehaviour
 
     private void Start()
     {
-        Image img = Resources.Load<Image>("UI\\QuestBox");
-        _quest = Instantiate(img).GetComponent<UI_Quest>();
-        _quest.transform.SetParent(transform.Find("QuestLayout"));
-
+        CreateKeyQuest();
         _staminaColor = _staminaBar.color;
         _hpColor = _hpBar.color;
+
+        Main.Game.OnKeyGet += CreateDoorQuest;
     }
 
     private void Update()
@@ -89,7 +89,7 @@ public class UI_HUDPanel : MonoBehaviour
         float old = _hpBar.fillAmount;
         _hpBar.fillAmount = _health.Health / 100;
         _hpText.text = _health.Health.ToString("F0");
-        _hpBar.color = old > _hpBar.fillAmount ? new Color(1, .7f, .7f) : _hpColor;
+        if( old > _hpBar.fillAmount) StartCoroutine(nameof(HpDamaged));
     }
 
     private void ChangeStamina()
@@ -119,6 +119,33 @@ public class UI_HUDPanel : MonoBehaviour
         Instantiate(optionPanel);
     }
 
+    private void CreateDoorQuest()
+    {
+        CreateDoor();
+        _quest.SetText("문을 열어 탈출하라");
+    }
+
+    private void CreateKeyQuest()
+    {
+        CreateDoor();
+        _quest.SetText("열쇠를 찾아라");
+    }
+
+    private void CreateDoor()
+    {
+        if (_quest != null)
+        {
+            Destroy(_quest.gameObject);
+            _quest = null;
+        }
+
+        Image img = Resources.Load<Image>("UI\\QuestBox");
+        _quest = Instantiate(img).GetComponent<UI_Quest>();
+        Transform questPos = gameObject.transform.Find("QuestLayout");
+        _quest.transform.SetParent(questPos);
+        _quest.transform.position = questPos.position;
+    }
+
     private IEnumerator ShowDamageBackground()
     {
         Color origin = _damagedbackground.color;
@@ -131,6 +158,12 @@ public class UI_HUDPanel : MonoBehaviour
             yield return null;
         }
         _damagedbackground.color = origin;
+    }
+    private IEnumerator HpDamaged()
+    {
+        _hpBar.color = new Color(1, .7f, .7f);
+        yield return new WaitForSeconds(1);
+        _hpBar.color = _hpColor;
     }
 
     private IEnumerator ShowUseBullet()
