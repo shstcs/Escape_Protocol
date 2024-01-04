@@ -6,7 +6,7 @@ using UnityEngine;
 public class MonsterHealth : MonoBehaviour
 {
     [SerializeField] private float _maxHealth = 100f;
-    [SerializeField] private float _healthRegenerationRate = 2f;
+    [SerializeField] private float _healthRegenerationRate = 20f;
 
     private float _health;
     public event Action OnDie;
@@ -36,24 +36,19 @@ public class MonsterHealth : MonoBehaviour
 
     private void StartHealthRegeneration()
     {
+        Debug.Log("몬스터 체력 회복"+Health);
         StartCoroutine(HealthRegeneration());
     }
 
     private IEnumerator HealthRegeneration()
     {
-        while (_health < _maxHealth)
+        _health += Time.deltaTime * _healthRegenerationRate;
+        if (IsDead&&_health >= _maxHealth)
         {
-            if (_health > 0)
-            {
-                _health += Time.deltaTime * _healthRegenerationRate;
-                if (_health >= _maxHealth)
-                {
-                    _health = 100f;
-                    IsDead = false;
-                }
-            }
-            yield return new WaitForSeconds(1f); // 1초마다 체크
+            _health = 100f;
+            IsDead = false;
         }
+         yield return new WaitForSeconds(1f); // 1초마다 체크
     }
     public void TakeDamage(int damage)
     {

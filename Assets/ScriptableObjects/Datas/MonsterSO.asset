@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PlayerChasingRange>k__BackingField: 20
   <ViewAngle>k__BackingField: 120
-  <AttackRange>k__BackingField: 5
+  <AttackRange>k__BackingField: 3
   <ForceTransitionTime>k__BackingField: 1
   <Force>k__BackingField: 5
   <Dealing_Start_TransitionTime>k__BackingField: 0.5

@@ -25,14 +25,11 @@ public class MonsterBaseState : IState
     }
     public virtual void Update()
     {
-        View();
+        //View();
         if (!stateMachine.Monster.health.IsDead)
             Move();
         else
             stateMachine.ChangeState(stateMachine.DeadState);
-        if(stateMachine.Target.IsDead)
-            stateMachine.Monster.enabled = false;
-
     }
     public virtual void HandleInput()
     {
@@ -86,11 +83,13 @@ public class MonsterBaseState : IState
         float playerDistanceSqr = (stateMachine.Target.transform.position - stateMachine.Monster.transform.position).sqrMagnitude;
         return playerDistanceSqr <= stateMachine.Monster.Data.AttackRange * stateMachine.Monster.Data.AttackRange;
     }
+    /*
     private Vector3 BoundaryAngle(float _angle)
     {
         _angle += stateMachine.Monster.transform.eulerAngles.y;
         return new Vector3(Mathf.Sin(_angle * Mathf.Deg2Rad), 0f, Mathf.Cos(_angle * Mathf.Deg2Rad));
     }
+    
     private void View()
     {
         targetMask = 8;
@@ -127,6 +126,6 @@ public class MonsterBaseState : IState
                 Debug.DrawRay(stateMachine.Monster.transform.position, targetPos, Color.red);
             }
         }
-    }
+    }*/
     #endregion
 }

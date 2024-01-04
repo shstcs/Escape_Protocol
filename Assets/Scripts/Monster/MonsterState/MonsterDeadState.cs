@@ -20,8 +20,10 @@ public class MonsterDeadState : MonsterBaseState
     }
     public override void Update()
     {
-        base.Update();
-        if (!stateMachine.Monster.health.IsDead)
+        if (stateMachine.Monster.health.Health == 100)
+        {
+            stateMachine.Monster.health.IsDead = false;
             stateMachine.ChangeState(stateMachine.AwakeState);
+        }
     }
 }
