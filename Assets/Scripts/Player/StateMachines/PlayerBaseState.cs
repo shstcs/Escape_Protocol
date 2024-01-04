@@ -45,6 +45,9 @@ public class PlayerBaseState : IState
         input.PlayerActions.Run.started += OnRunStarted;
 
         stateMachine.Player.Input.PlayerActions.Jump.started += OnJumpStarted;
+
+        stateMachine.Player.Input.PlayerActions.Attack.performed += OnAttackPerformed;
+        stateMachine.Player.Input.PlayerActions.Attack.canceled += OnAttackCanceled;
     }
 
     protected virtual void RemoveInputActionsCallbacks()
@@ -54,6 +57,9 @@ public class PlayerBaseState : IState
         input.PlayerActions.Run.started -= OnRunStarted;
 
         stateMachine.Player.Input.PlayerActions.Jump.started -= OnJumpStarted;
+
+        stateMachine.Player.Input.PlayerActions.Attack.performed -= OnAttackPerformed;
+        stateMachine.Player.Input.PlayerActions.Attack.canceled -= OnAttackCanceled;
     }
 
     protected virtual void OnRunStarted(InputAction.CallbackContext context)
@@ -71,6 +77,16 @@ public class PlayerBaseState : IState
         
     }
 
+    protected virtual void OnAttackPerformed(InputAction.CallbackContext obj)
+    {
+        stateMachine.IsAttacking = true;
+    }
+
+    protected virtual void OnAttackCanceled(InputAction.CallbackContext obj)
+    {
+        stateMachine.IsAttacking = false;
+    }
+
     private void ReadMovementInput()
     {
         stateMachine.MovementInput = stateMachine.Player.Input.PlayerActions.Movement.ReadValue<Vector2>();
@@ -83,6 +99,11 @@ public class PlayerBaseState : IState
         //Rotate(movementDirection);
 
         Move(movementDirection);
+    }
+
+    protected void ForceMove()
+    {
+        stateMachine.Player.Controller.Move(stateMachine.Player.ForceReceiver.Movement * Time.deltaTime);
     }
 
     private Vector3 GetMovementDirection()

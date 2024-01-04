@@ -66,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     // 데미지 받는 부분도 OnDamage에 등록?
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         if (_health <= 0) return;
 
