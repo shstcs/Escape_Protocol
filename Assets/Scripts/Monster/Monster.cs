@@ -15,6 +15,7 @@ public class Monster : MonoBehaviour
     public ForceReceiver ForceReceiver { get; private set; }
     public NavMeshAgent Agent { get; private set; }
     public MonsterHealth health { get; private set; }
+    public AudioSource EffectSound { get; private set; }
     private MonsterStateMachine stateMachine;
 
     private void Awake()
@@ -27,6 +28,7 @@ public class Monster : MonoBehaviour
         Controller = GetComponentInChildren<CharacterController>();
         ForceReceiver = GetComponent<ForceReceiver>();
         health = GetComponent<MonsterHealth>();
+        EffectSound = GetComponent<AudioSource>();
 
         stateMachine = new MonsterStateMachine(this);
     }
