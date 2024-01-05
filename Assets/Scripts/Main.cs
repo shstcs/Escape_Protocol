@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Main : MonoBehaviour
     {
         get
         {
-            if (!_initialized)
+            if (!_initialized || _instance == null)
             {
                 _initialized = true;
 
@@ -26,7 +27,6 @@ public class Main : MonoBehaviour
                     obj.AddComponent<AudioSource>();
                     DontDestroyOnLoad(obj);
                     _instance = obj.GetComponent<Main>();
-                    //_instance._game = GameObject.FindObjectOfType<GameManager>();
                 }
             }
             return _instance;
@@ -53,5 +53,10 @@ public class Main : MonoBehaviour
         {
             Instance._player = value;
         }
+    }
+
+    private void Start()
+    {
+        SceneManager.sceneLoaded += Game.OnSceneLoaded;
     }
 }

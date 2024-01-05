@@ -7,9 +7,9 @@ public class PlayerAttack : MonoBehaviour
     private MonsterHealth _monsterHealth;
 
 
-    private void Awake()
+    private void Start()
     {
-        _monsterHealth = GameObject.Find("Monster").GetComponent<MonsterHealth>();
+        _monsterHealth = GameObject.FindWithTag("Enemy").GetComponent<MonsterHealth>();
     }
 
     public void Attack()
