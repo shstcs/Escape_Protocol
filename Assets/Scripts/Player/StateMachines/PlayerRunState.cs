@@ -14,7 +14,7 @@ public class PlayerRunState : PlayerGroundedState
         stateMachine.MovementSpeedModifier = groundData.RunSpeedModifier;
         base.Enter();
 
-        stateMachine.Player.Gun.Anim.SetBool("Run", true);
+        stateMachine.Player.GunController.CurrentGun.Anim.SetBool("Run", true);
     }
 
     public override void Update()
@@ -30,7 +30,7 @@ public class PlayerRunState : PlayerGroundedState
     {
         base.Exit();
 
-        stateMachine.Player.Gun.Anim.SetBool("Run", false);
+        stateMachine.Player.GunController.CurrentGun.Anim.SetBool("Run", false);
     }
 
     private void RunConsumeStamina()

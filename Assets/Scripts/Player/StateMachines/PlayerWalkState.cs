@@ -15,14 +15,14 @@ public class PlayerWalkState : PlayerGroundedState
         stateMachine.MovementSpeedModifier = groundData.WalkSpeedModifier;
         base.Enter();
 
-        stateMachine.Player.Gun.Anim.SetBool("Walk", true);
+        stateMachine.Player.GunController.CurrentGun.Anim.SetBool("Walk", true);
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        stateMachine.Player.Gun.Anim.SetBool("Walk", false);
+        stateMachine.Player.GunController.CurrentGun.Anim.SetBool("Walk", false);
     }
 
     protected override void OnRunStarted(InputAction.CallbackContext context)
