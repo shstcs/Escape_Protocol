@@ -23,6 +23,7 @@ public class MonsterIdleState : MonsterBaseState
 
     public override void Update()
     {
+        base.Update();
         if(IsInChaseRange())
         {
             stateMachine.ChangeState(stateMachine.ChasingState);
