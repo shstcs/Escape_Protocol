@@ -54,9 +54,4 @@ public class Main : MonoBehaviour
             Instance._player = value;
         }
     }
-
-    private void Start()
-    {
-        SceneManager.sceneLoaded += Game.OnSceneLoaded;
-    }
 }

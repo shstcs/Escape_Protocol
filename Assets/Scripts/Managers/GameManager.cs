@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.sceneLoaded += OnSceneLoaded;
         _health = GameObject.Find("Player").GetComponent<PlayerHealth>();
         _uiHUD = FindObjectOfType<UI_HUDPanel>();
     }
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    /*public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "StageScene1" || scene.name == "StageScene2")
         {
@@ -72,5 +72,5 @@ public class GameManager : MonoBehaviour
                 Instantiate(Resources.Load<GameObject>("Monster/Monster"), GameObject.Find("MonsterSpawnPoint").transform.position, Quaternion.identity);
             }
         }
-    }
+    }*/
 }

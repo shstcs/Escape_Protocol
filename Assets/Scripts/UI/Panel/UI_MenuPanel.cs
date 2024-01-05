@@ -105,11 +105,15 @@ public class UI_MenuPanel : MonoBehaviour
 
     public void LoadStage2(string scene)
     {
+        StartCoroutine(LoadAsynchronously(scene));
+
+        /*
         if (scene != "" && Main.Game.IsStage1Clear)
         {
             StartCoroutine(LoadAsynchronously(scene));
         }
         else Debug.Log("1단계를 클리어하지 않았습니다.");
+        */
     }
 
     public void DisablePlayCampaign()
