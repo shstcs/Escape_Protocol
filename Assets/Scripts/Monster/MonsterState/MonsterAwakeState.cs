@@ -9,6 +9,7 @@ public class MonsterAwakeState : MonsterBaseState
     }
     public override void Enter()
     {
+        stateMachine.Monster.EffectSound.volume = 0.8f;
         base.Enter();
         StartAnimation(stateMachine.Monster.AnimationData.AwakeParameterHash);
     }

@@ -9,6 +9,7 @@ public class MonsterDeadState : MonsterBaseState
     }
     public override void Enter()
     {
+        stateMachine.Monster.EffectSound.volume = 0.0f;
         stateMachine.MovementSpeedModifier = 0;
         base.Enter();
         StartAnimation(stateMachine.Monster.AnimationData.DeadParameterHash);
