@@ -17,7 +17,12 @@ public class GunController : MonoBehaviour
     [Header("Scope")]
     [SerializeField] private GameObject _scope;
 
-    public bool IsFindSightMode { get; private set; }
+    [Header("Sound")]
+    [SerializeField] private AudioClip _reloadSound;
+    [SerializeField] private AudioClip _fineSightSound;
+    [SerializeField] private AudioClip _noBulletSound;
+
+    public bool IsFineSightMode { get; private set; }
 
     private PlayerAttack _playerAttack;
 
@@ -40,7 +45,7 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
-        IsFindSightMode = false;
+        IsFineSightMode = false;
     }
 
 
@@ -77,6 +82,7 @@ public class GunController : MonoBehaviour
                 Shoot();
             else
             {
+                PlaySE(_noBulletSound);
                 CancelFineSight();
                 StartCoroutine(COReload());
             }
@@ -115,7 +121,7 @@ public class GunController : MonoBehaviour
         Vector3 randomRange = new Vector3(Random.Range(-CurrentGun.Accuracy, CurrentGun.Accuracy), Random.Range(-CurrentGun.Accuracy, CurrentGun.Accuracy), 0);
         Vector3 randomRangeFineSight = new Vector3(Random.Range(-CurrentGun.AccuracyFineSight, CurrentGun.AccuracyFineSight), Random.Range(-CurrentGun.AccuracyFineSight, CurrentGun.AccuracyFineSight), 0);
 
-        if (!IsFindSightMode)  // 정조준이 아닌 상태
+        if (!IsFineSightMode)  // 정조준이 아닌 상태
         {
             Debug.DrawRay(Camera.main.transform.position, (Camera.main.transform.forward + randomRange) * CurrentGun.Range, Color.blue, 0.3f);
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward + randomRange, out _hitInfo, CurrentGun.Range)) // 카메라 월드좌표
@@ -158,10 +164,10 @@ public class GunController : MonoBehaviour
 
     private void FineSight()
     {
-        IsFindSightMode = !IsFindSightMode;
-        CurrentGun.Anim.SetBool("FineSightMode", IsFindSightMode);
+        IsFineSightMode = !IsFineSightMode;
+        CurrentGun.Anim.SetBool("FineSightMode", IsFineSightMode);
 
-        if (IsFindSightMode)
+        if (IsFineSightMode)
         {
             StopAllCoroutines();
             StartCoroutine(COFineSightActivate());
@@ -175,12 +181,14 @@ public class GunController : MonoBehaviour
 
     private void CancelFineSight()
     {
-        if (IsFindSightMode)
+        if (IsFineSightMode)
             FineSight();
     }
 
     IEnumerator COFineSightActivate()
     {
+        PlaySE(_fineSightSound);
+
         _originFOV = _virtualCamera.m_Lens.FieldOfView;
 
         if(!_isSniper)
@@ -236,6 +244,8 @@ public class GunController : MonoBehaviour
     {
         if (CurrentGun.CarryBulletCount > 0)
         {
+            PlaySE(_reloadSound);
+
             _isReload = true;
             CurrentGun.Anim.SetTrigger("Reload");
 
@@ -259,6 +269,7 @@ public class GunController : MonoBehaviour
         }
         else
         {
+            PlaySE(_noBulletSound);
             Debug.Log("소유한 총알이 없습니다.");
         }
     }
@@ -268,7 +279,7 @@ public class GunController : MonoBehaviour
         Vector3 recoilBack = new Vector3(CurrentGun.OriginPos.x, CurrentGun.OriginPos.y, CurrentGun.OriginPos.z - CurrentGun.RetroActionForce); // 정조준 x
         Vector3 retroActionRecoilBack = new Vector3(CurrentGun.FineSightOriginPos.x, CurrentGun.FineSightOriginPos.y, CurrentGun.FineSightOriginPos.z - CurrentGun.RetroActionFineSightForce);  // 정조준
 
-        if (!IsFindSightMode)  // 정조준이 아닌 상태
+        if (!IsFineSightMode)  // 정조준이 아닌 상태
         {
             CurrentGun.transform.localPosition = CurrentGun.OriginPos;
 
@@ -308,10 +319,9 @@ public class GunController : MonoBehaviour
         }
     }
 
-    private void PlaySE(AudioClip _clip)
+    public void PlaySE(AudioClip _clip)
     {
-        _audioSource.clip = _clip;
-        _audioSource.Play();
+        _audioSource.PlayOneShot(_clip);
     }
 
     public void EquipM4()

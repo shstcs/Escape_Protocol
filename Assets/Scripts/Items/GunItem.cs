@@ -12,6 +12,7 @@ public enum GunType
 public class GunItem : MonoBehaviour
 {
     public GunType GunType;
+    [SerializeField] private AudioClip _gunEquipSound;
 
     private float _rotationSpeed = 50f;
 
@@ -25,7 +26,8 @@ public class GunItem : MonoBehaviour
         if (collision.tag == "Player")
         {
             Debug.Log("GunItem 획득");
-            switch(GunType)
+            collision.gameObject.GetComponent<Player>().GunController.PlaySE(_gunEquipSound);
+            switch (GunType)
             {
                 case GunType.None:
                     break;

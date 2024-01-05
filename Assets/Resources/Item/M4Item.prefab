@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunType: 1
+  _gunEquipSound: {fileID: 8300000, guid: c65c1cd5281079f409ad8514178eb3da, type: 3}
 --- !u!54 &3572178084430707808
 Rigidbody:
   m_ObjectHideFlags: 0

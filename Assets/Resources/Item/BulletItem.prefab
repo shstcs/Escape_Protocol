@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletCount: 30
+  _bulletSound: {fileID: 8300000, guid: 7e98ce080ad3d6b438f693b4dc42a2e6, type: 3}
 --- !u!135 &4954739603139153942
 SphereCollider:
   m_ObjectHideFlags: 0

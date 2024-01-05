@@ -34,7 +34,7 @@ Transform:
   - {fileID: 2915925764176192157}
   - {fileID: 5707974582587736968}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5699674643622350508
 MonoBehaviour:
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunType: 2
+  _gunEquipSound: {fileID: 8300000, guid: c65c1cd5281079f409ad8514178eb3da, type: 3}
 --- !u!54 &6649049655852716919
 Rigidbody:
   m_ObjectHideFlags: 0

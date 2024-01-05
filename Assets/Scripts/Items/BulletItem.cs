@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletItem : MonoBehaviour
 {
     [SerializeField] private int _bulletCount;
+    [SerializeField] private AudioClip _bulletSound;
 
     private float _rotationSpeed = 50f;
 
@@ -18,6 +19,7 @@ public class BulletItem : MonoBehaviour
         if(collision.tag == "Player")
         {
             Debug.Log("Bullet 획득");
+            collision.gameObject.GetComponent<Player>().GunController.PlaySE(_bulletSound);
             collision.gameObject.GetComponent<Player>().GunController.CurrentGun.CarryBulletCount += _bulletCount;
             Destroy(gameObject);
         }
