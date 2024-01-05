@@ -7,9 +7,6 @@ using UnityEngine.UIElements;
 public class MonsterBaseState : IState
 {
     protected MonsterStateMachine stateMachine;
-    private List<Collider> hitTargetList = new List<Collider>();
-    private LayerMask targetMask;
-    private RaycastHit _hit;
 
     #region IState
     public MonsterBaseState(MonsterStateMachine enemyStateMachine)
