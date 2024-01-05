@@ -34,7 +34,7 @@ Transform:
   - {fileID: 2323305622766414845}
   - {fileID: 3212898673796617176}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -70, y: 474.89, z: 0}
 --- !u!54 &9015813619378367895
 Rigidbody:
@@ -75,7 +75,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe31d46c37451c409dc81abc6217608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 50
   _bulletCount: 30
 --- !u!135 &4954739603139153942
 SphereCollider:
@@ -96,8 +95,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.016304644
-  m_Center: {x: -0.0020413485, y: 0.0000000047770627, z: 0.0102350395}
+  m_Radius: 0.025877252
+  m_Center: {x: -0.0020413485, y: 0.001360507, z: 0.010235042}
 --- !u!1001 &4211846447103597984
 PrefabInstance:
   m_ObjectHideFlags: 0

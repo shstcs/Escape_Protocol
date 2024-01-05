@@ -292,4 +292,17 @@ public class GunController : MonoBehaviour
 
         Main.Game.CallWeaponGet();
     }
+
+    public void EquipM82()
+    {
+        foreach (GameObject gun in _gunHolders)
+        {
+            gun.SetActive(false);
+        }
+
+        CurrentGun = _gunHolders[2].GetComponent<Gun>();
+        _gunHolders[2].SetActive(true);
+
+        Main.Game.CallWeaponGet();
+    }
 }
