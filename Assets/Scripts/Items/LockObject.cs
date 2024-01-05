@@ -7,9 +7,11 @@ public class LockObject : MonoBehaviour, IInteractable
     public LockedDoorData lockedDoor;
 
     [SerializeField] private GameObject KeyDoor;
+    [SerializeField] private AudioSource OpenDoorSound;
 
     private BoxCollider _doorCollider;
     private Animator _doorAnimator;
+    
 
     //case blue, red, green 일때 따로따로 배치하는 방법이 필요하다.
 
@@ -52,7 +54,7 @@ public class LockObject : MonoBehaviour, IInteractable
         switch(lockedDoor.DisPlayName)
         {
             case "Blue":
-                if(Main.Player.KeyCheck.Blue == true)
+                if (Main.Player.KeyCheck.Blue == true)
                     DoorInteraction();
                 break;
             case "Red":
@@ -64,6 +66,7 @@ public class LockObject : MonoBehaviour, IInteractable
                     DoorInteraction();
                 break;
         }
+        OpenDoorSound.Play();
     }
 
     public void DoorInteraction()
