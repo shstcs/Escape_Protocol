@@ -35,6 +35,7 @@ public class GunItem : MonoBehaviour
                     break;
 
                 case GunType.M82:
+                    collision.gameObject.GetComponent<Player>().GunController.EquipM82();
                     break;
 
                 default:
