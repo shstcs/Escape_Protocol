@@ -415,6 +415,7 @@ MonoBehaviour:
   _staminaText: {fileID: 4690903520371133734}
   _bulletText: {fileID: 4271428025927859705}
   _damagedbackground: {fileID: 7826288272732563526}
+  _questTransform: {fileID: 3237614823156548517}
 --- !u!1 &2983853931518956113
 GameObject:
   m_ObjectHideFlags: 0

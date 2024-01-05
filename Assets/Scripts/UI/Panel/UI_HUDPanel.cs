@@ -16,6 +16,7 @@ public class UI_HUDPanel : MonoBehaviour
     [SerializeField] private TMP_Text _staminaText;
     [SerializeField] private TMP_Text _bulletText;
     [SerializeField] private Image _damagedbackground;
+    [SerializeField] private Transform _questTransform; 
 
     private UI_Quest _quest;
 
@@ -144,9 +145,8 @@ public class UI_HUDPanel : MonoBehaviour
 
         Image img = Resources.Load<Image>("UI\\QuestBox");
         _quest = Instantiate(img).GetComponent<UI_Quest>();
-        Transform questPos = gameObject.transform.Find("QuestLayout");
-        _quest.transform.SetParent(questPos);
-        _quest.transform.position = questPos.position;
+        _quest.transform.SetParent(_questTransform);
+        _quest.transform.localPosition = Vector3.zero;
     }
 
     private IEnumerator CreateQuests()
