@@ -583,6 +583,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2003109996530519993, guid: 9f1db631e85f3ac49a1840f1fd495b60, type: 3}
+      propertyPath: OpenDoorSound
+      value: 
+      objectReference: {fileID: 1501730359}
     - target: {fileID: 2128579170085906230, guid: 9f1db631e85f3ac49a1840f1fd495b60, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -595,6 +599,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sci-Fi Map
       objectReference: {fileID: 0}
+    - target: {fileID: 6499383423098380935, guid: 9f1db631e85f3ac49a1840f1fd495b60, type: 3}
+      propertyPath: OpenDoorSound
+      value: 
+      objectReference: {fileID: 1501730359}
+    - target: {fileID: 8454482404798606043, guid: 9f1db631e85f3ac49a1840f1fd495b60, type: 3}
+      propertyPath: OpenDoorSound
+      value: 
+      objectReference: {fileID: 1501730359}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -693,6 +705,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b8e69054168c67409c500f7ebf24fa9, type: 3}
+--- !u!82 &1501730359 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7798387462188564302, guid: 9d03687ed1efbeb41b0245e3be3b2d56, type: 3}
+  m_PrefabInstance: {fileID: 2022576151}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1584780014
 GameObject:
   m_ObjectHideFlags: 3
@@ -1199,6 +1216,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7798387462188564302, guid: 9d03687ed1efbeb41b0245e3be3b2d56, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6429ef6fc932abf48bd557105f587cfb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
