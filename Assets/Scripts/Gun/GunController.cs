@@ -131,7 +131,7 @@ public class GunController : MonoBehaviour
             Debug.DrawRay(Camera.main.transform.position, (Camera.main.transform.forward + randomRangeFineSight) * CurrentGun.Range, Color.blue, 0.3f);
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward + randomRangeFineSight, out _hitInfo, CurrentGun.Range)) // 카메라 월드좌표
             {
-                GameObject clone = Instantiate(_currentGun.HitEffectPrefab, _hitInfo.point, Quaternion.LookRotation(_hitInfo.normal));
+                GameObject clone = Instantiate(CurrentGun.HitEffectPrefab, _hitInfo.point, Quaternion.LookRotation(_hitInfo.normal));
                 
                 Debug.Log(_hitInfo.transform.name);
                 if (_hitInfo.transform.name == "Monster")
