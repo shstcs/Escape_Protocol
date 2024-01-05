@@ -14,6 +14,9 @@ public class GunController : MonoBehaviour
     [Header("Camera")]
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
+    [Header("Scope")]
+    [SerializeField] private GameObject _scope;
+
     public bool IsFindSightMode { get; private set; }
 
     private PlayerAttack _playerAttack;
@@ -23,6 +26,7 @@ public class GunController : MonoBehaviour
     private RaycastHit _hitInfo;  // 총알의 충돌 정보
     private float _currentFireRate;
     private bool _isReload = false;
+    private bool _isSniper = false;
     private float _originFOV;
 
 
@@ -179,22 +183,52 @@ public class GunController : MonoBehaviour
     {
         _originFOV = _virtualCamera.m_Lens.FieldOfView;
 
-        while (CurrentGun.transform.localPosition != CurrentGun.FineSightOriginPos)
+        if(!_isSniper)
         {
-            CurrentGun.transform.localPosition = Vector3.Lerp(CurrentGun.transform.localPosition, CurrentGun.FineSightOriginPos, 0.2f);
-            _virtualCamera.m_Lens.FieldOfView = 30f;
+            while (CurrentGun.transform.localPosition != CurrentGun.FineSightOriginPos)
+            {
+                CurrentGun.transform.localPosition = Vector3.Lerp(CurrentGun.transform.localPosition, CurrentGun.FineSightOriginPos, 0.2f);
+                _virtualCamera.m_Lens.FieldOfView = 30f;
 
-            yield return null;
+                yield return null;
+            }
         }
+        else
+        {
+            while (CurrentGun.transform.localPosition != CurrentGun.FineSightOriginPos)
+            {
+                CurrentGun.transform.localPosition = Vector3.Lerp(CurrentGun.transform.localPosition, CurrentGun.FineSightOriginPos, 0.2f);
+                _virtualCamera.m_Lens.FieldOfView = 20f;
+                _scope.SetActive(true);
+
+                yield return null;
+            }
+        }
+
     }
 
     IEnumerator COFineSightDeActivate()
     {
-        while (CurrentGun.transform.localPosition != CurrentGun.OriginPos)
+        if(!_scope)
         {
-            CurrentGun.transform.localPosition = Vector3.Lerp(CurrentGun.transform.localPosition, CurrentGun.OriginPos, 0.2f);
-            _virtualCamera.m_Lens.FieldOfView = _originFOV;
-            yield return null;
+            while (CurrentGun.transform.localPosition != CurrentGun.OriginPos)
+            {
+                CurrentGun.transform.localPosition = Vector3.Lerp(CurrentGun.transform.localPosition, CurrentGun.OriginPos, 0.2f);
+                _virtualCamera.m_Lens.FieldOfView = _originFOV;
+
+                yield return null;
+            }
+        }
+        else
+        {
+            while (CurrentGun.transform.localPosition != CurrentGun.OriginPos)
+            {
+                CurrentGun.transform.localPosition = Vector3.Lerp(CurrentGun.transform.localPosition, CurrentGun.OriginPos, 0.2f);
+                _virtualCamera.m_Lens.FieldOfView = _originFOV;
+                _scope.SetActive(false);
+
+                yield return null;
+            }
         }
     }
 
@@ -289,6 +323,7 @@ public class GunController : MonoBehaviour
 
         CurrentGun = _gunHolders[1].GetComponent<Gun>();
         _gunHolders[1].SetActive(true);
+        _isSniper = false;
 
         Main.Game.CallWeaponGet();
     }
@@ -302,6 +337,7 @@ public class GunController : MonoBehaviour
 
         CurrentGun = _gunHolders[2].GetComponent<Gun>();
         _gunHolders[2].SetActive(true);
+        _isSniper = true;
 
         Main.Game.CallWeaponGet();
     }
