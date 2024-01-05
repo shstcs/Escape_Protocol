@@ -217,7 +217,7 @@ public class GunController : MonoBehaviour
 
     IEnumerator COFineSightDeActivate()
     {
-        if(!_scope)
+        if(!_isSniper)
         {
             while (CurrentGun.transform.localPosition != CurrentGun.OriginPos)
             {

@@ -14,7 +14,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
-        _monsterHealth.TakeDamage(40); // _gun.Damage로 수정 필요
+        _monsterHealth.TakeDamage(Main.Player.GunController.CurrentGun.Damage);
         Debug.Log(_monsterHealth.Health);
         Debug.Log("몬스터가 죽었나요? : " + _monsterHealth.IsDead);
     }
