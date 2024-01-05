@@ -16,7 +16,6 @@ public class UI_HUDPanel : MonoBehaviour
     [SerializeField] private TMP_Text _staminaText;
     [SerializeField] private TMP_Text _bulletText;
     [SerializeField] private Image _damagedbackground;
-    [SerializeField] private TMP_Text _usedBullet;
 
     private UI_Quest _quest;
 
@@ -31,40 +30,35 @@ public class UI_HUDPanel : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         _health = GameObject.Find("Player").GetComponent<PlayerHealth>();
-        _gun = GameObject.FindWithTag("Weapon").GetComponent<Gun>();
+        
     }
 
     private void Start()
     {
         CreateKeyQuest();
+        ChangeWeapon();
         _staminaColor = _staminaBar.color;
         _hpColor = _hpBar.color;
 
         Main.Game.OnKeyGet += CreateDoorQuest;
+        Main.Game.OnWeaponGet += ChangeWeapon;
+    }
+
+    private void ChangeWeapon()
+    {
+        _gun = Main.Player.GunController.CurrentGun;
     }
 
     private void Update()
     {
         if (Time.timeScale > 0)
         {
-            if (Input.GetKeyUp(KeyCode.Q))
-            {
-                StartDamageBackground();
-            }
-            if (Input.GetKeyUp(KeyCode.O))
-            {
-                Debug.Log("Show Over Window");
-                ShowOverPanel();
-            }
-            if (Input.GetKeyUp(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 ShowOptionPanel();
                 Cursor.lockState = CursorLockMode.None;
             }
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                StartCoroutine(nameof(ShowUseBullet));
-            }
+            
             ChangeConditions();
         }
     }

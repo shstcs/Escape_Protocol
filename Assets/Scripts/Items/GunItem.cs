@@ -25,7 +25,6 @@ public class GunItem : MonoBehaviour
         if (collision.tag == "Player")
         {
             Debug.Log("GunItem 획득");
-
             switch(GunType)
             {
                 case GunType.None:

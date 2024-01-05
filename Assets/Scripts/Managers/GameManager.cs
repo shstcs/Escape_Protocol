@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public UnityAction OnStageOver;
     public UnityAction OnKeyGet;
     public UnityAction OnDoorOpen;
+    public UnityAction OnWeaponGet;
 
     private PlayerHealth _health;
     private UI_HUDPanel _uiHUD;
@@ -38,6 +39,11 @@ public class GameManager : MonoBehaviour
     public void CallDoorOpen()
     {
         OnDoorOpen?.Invoke();
+    }
+
+    public void CallWeaponGet()
+    {
+        OnWeaponGet?.Invoke();
     }
     private void Awake()
     {

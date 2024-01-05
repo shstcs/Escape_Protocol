@@ -289,5 +289,7 @@ public class GunController : MonoBehaviour
 
         CurrentGun = _gunHolders[1].GetComponent<Gun>();
         _gunHolders[1].SetActive(true);
+
+        Main.Game.CallWeaponGet();
     }
 }
