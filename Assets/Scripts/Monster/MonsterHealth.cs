@@ -36,7 +36,6 @@ public class MonsterHealth : MonoBehaviour
 
     private void StartHealthRegeneration()
     {
-        Debug.Log("몬스터 체력 회복"+Health);
         StartCoroutine(HealthRegeneration());
     }
 
@@ -60,7 +59,6 @@ public class MonsterHealth : MonoBehaviour
         {
             IsDead = true;
             OnDie?.Invoke();
-            Debug.Log("괴물이 죽었어요.");
         }
     }
 }
