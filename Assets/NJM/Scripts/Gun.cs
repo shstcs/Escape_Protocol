@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    [field: SerializeField] public Vector3 OriginPos;
+    [field: SerializeField] public Vector3 FineSightOriginPos;
     [field : SerializeField] public string GunName { get; private set; }  // 총의 이름
     [field: SerializeField] public float Range { get; private set; }      // 총의 사정 거리
     [field: SerializeField] public float FireRate { get; private set; }   // 연사 속도 (한발과 한발간의 시간 텀)
