@@ -15,6 +15,7 @@ public class UI_OptionPanel : MonoBehaviour
     public void ReturnToMenu(string sceneName)
     {
         Time.timeScale = 1;
+        Main.Game.IsClear = false;
         SceneManager.LoadScene(sceneName);
     }
 

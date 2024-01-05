@@ -255,6 +255,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8316647182001920930, guid: 4262a83f8770d534ab0c2439cdd2a6b5, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316647182001920930, guid: 4262a83f8770d534ab0c2439cdd2a6b5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 452459589694563249, guid: 4262a83f8770d534ab0c2439cdd2a6b5, type: 3}
     m_RemovedGameObjects:
@@ -268,7 +276,27 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6548174666442426855, guid: 4262a83f8770d534ab0c2439cdd2a6b5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1507192158}
+    - targetCorrespondingSourceObject: {fileID: 180703579590058431, guid: 4262a83f8770d534ab0c2439cdd2a6b5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 569096512}
   m_SourcePrefab: {fileID: 100100000, guid: 4262a83f8770d534ab0c2439cdd2a6b5, type: 3}
+--- !u!1 &569096510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 180703579590058431, guid: 4262a83f8770d534ab0c2439cdd2a6b5, type: 3}
+  m_PrefabInstance: {fileID: 295110758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &569096512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569096510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15ea7f4b9c071a49b7d8db82f977c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &603026620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -817,6 +845,10 @@ PrefabInstance:
     - target: {fileID: 5236472927486222832, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853103462644111840, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8363094109130881995, guid: 1aee069bf91ece74e9ca1153ed8aa48c, type: 3}
       propertyPath: promptText

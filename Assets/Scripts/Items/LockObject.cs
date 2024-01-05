@@ -69,6 +69,7 @@ public class LockObject : MonoBehaviour, IInteractable
     public void DoorInteraction()
     {
         _doorAnimator.SetTrigger("OpenDoor");
+        Main.Game.CallDoorOpen();
         Destroy(_doorCollider);
     }
 }

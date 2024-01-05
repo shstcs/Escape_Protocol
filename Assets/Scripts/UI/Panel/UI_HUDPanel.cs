@@ -41,7 +41,11 @@ public class UI_HUDPanel : MonoBehaviour
         _hpColor = _hpBar.color;
 
         Main.Game.OnKeyGet += CreateDoorQuest;
+        Main.Game.OnDoorOpen += CreateKeyQuest;
         Main.Game.OnWeaponGet += ChangeWeapon;
+        Main.Game.OnStageOver += ShowOverPanel;
+        //사실 위에걸로 해도 되긴 함.
+        _health.OnDie += ShowOverPanel;
     }
 
     private void ChangeWeapon()
@@ -113,19 +117,24 @@ public class UI_HUDPanel : MonoBehaviour
         Instantiate(optionPanel);
     }
 
+    private void StageOver()
+    {
+        ShowOverPanel();
+    }
+
     private void CreateDoorQuest()
     {
-        CreateDoor();
+        CreateQuest();
         _quest.SetText("문을 열어 탈출하라");
     }
 
     private void CreateKeyQuest()
     {
-        CreateDoor();
+        CreateQuest();
         _quest.SetText("열쇠를 찾아라");
     }
 
-    private void CreateDoor()
+    private void CreateQuest()
     {
         if (_quest != null)
         {
@@ -138,6 +147,24 @@ public class UI_HUDPanel : MonoBehaviour
         Transform questPos = gameObject.transform.Find("QuestLayout");
         _quest.transform.SetParent(questPos);
         _quest.transform.position = questPos.position;
+    }
+
+    private IEnumerator CreateQuests()
+    {
+        if (_quest != null)
+        {
+            //점점 투명하게
+            Destroy(_quest.gameObject);
+            _quest = null;
+        }
+
+        Image img = Resources.Load<Image>("UI\\QuestBox");
+        _quest = Instantiate(img).GetComponent<UI_Quest>();
+        Transform questPos = gameObject.transform.Find("QuestLayout");
+        _quest.transform.SetParent(questPos);
+        _quest.transform.position = questPos.position;
+        //점점 선명하게
+        yield return null;
     }
 
     private IEnumerator ShowDamageBackground()
