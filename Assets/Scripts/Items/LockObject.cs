@@ -45,7 +45,6 @@ public class LockObject : MonoBehaviour, IInteractable
                 else
                     return string.Format("Need {0} Key", lockedDoor.DisPlayName);
         }
-        //return string.Format("Open {0} Door", lockedDoor.DisPlayName);
         return string.Format("Need {0} Key", lockedDoor.DisPlayName);
     }
 
@@ -58,21 +57,23 @@ public class LockObject : MonoBehaviour, IInteractable
                     DoorInteraction();
                 break;
             case "Red":
-                if(Main.Player.KeyCheck.Red == true)
+                if (Main.Player.KeyCheck.Red == true)
                     DoorInteraction();
-                break;
+                    break;
             case "Green":
                 if(Main.Player.KeyCheck.Green == true)
                     DoorInteraction();
                 break;
         }
-        OpenDoorSound.Play();
     }
 
     public void DoorInteraction()
     {
-        _doorAnimator.SetTrigger("OpenDoor");
+        _doorAnimator.SetTrigger("OpenDoor");        
         Main.Game.CallDoorOpen();
         Destroy(_doorCollider);
+
+        if(!OpenDoorSound.isPlaying)             
+            OpenDoorSound.Play();
     }
 }
