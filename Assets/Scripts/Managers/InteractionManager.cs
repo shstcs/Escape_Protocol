@@ -60,7 +60,7 @@ public class InteractionManager : MonoBehaviour
     {
         promptText.gameObject.SetActive(true);
         // 키보드 K를 누르면 열쇠 획득 가능
-        promptText.text = string.Format("<b>[K]</b> {0}", curInteractable.GetInteractPrompt());
+        promptText.text = string.Format("<b>[F]</b> {0}", curInteractable.GetInteractPrompt());
     }
 
     public void OnInteractInput(InputAction.CallbackContext callbackContext)

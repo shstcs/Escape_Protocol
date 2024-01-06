@@ -23,7 +23,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerInputActions"",
     ""maps"": [
-        { 
+        {
             ""name"": ""Player"",
             ""id"": ""d3d26cb6-cd17-4d3f-93df-3d45375eedeb"",
             ""actions"": [
@@ -185,7 +185,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8088049e-71a4-4774-a5ad-3253ef9f6907"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
