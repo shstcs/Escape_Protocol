@@ -1542,6 +1542,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5028479591891718814, guid: 9d03687ed1efbeb41b0245e3be3b2d56, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837436289412589178, guid: 9d03687ed1efbeb41b0245e3be3b2d56, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5856767120919209949, guid: 9d03687ed1efbeb41b0245e3be3b2d56, type: 3}
       propertyPath: m_Name
       value: SoundManager
@@ -1594,6 +1602,10 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 6429ef6fc932abf48bd557105f587cfb, type: 3}
+    - target: {fileID: 7798387462188564302, guid: 9d03687ed1efbeb41b0245e3be3b2d56, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
