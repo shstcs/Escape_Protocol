@@ -4,9 +4,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerBaseState : IState
 {
+    #region Fields
+
     protected PlayerStateMachine stateMachine;
     protected readonly PlayerGroundData groundData;
-    
+
+    #endregion
+
     public PlayerBaseState(PlayerStateMachine playerStateMachine)
     {
         stateMachine = playerStateMachine;

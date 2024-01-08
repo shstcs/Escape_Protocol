@@ -5,7 +5,13 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class ItemObject : MonoBehaviour, IInteractable
 {
+    #region Fields
+
     public ItemData item;
+
+    #endregion
+
+    #region Fields
 
     public string GetInteractPrompt()
     {
@@ -32,4 +38,6 @@ public class ItemObject : MonoBehaviour, IInteractable
         Main.Game.CallkeyGet();
         Destroy(gameObject);
     }
+
+    #endregion
 }

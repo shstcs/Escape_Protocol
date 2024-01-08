@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class PlayerFallState : PlayerAirState
 {
+    #region Fields
+
     private float _timeOnGround; // 바닥에 닿은 시간 저장
     private float _fallEndTime; // 낙하 종료 시간
 
     private PlayerHealth _health;
+
+    #endregion
 
     public PlayerFallState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {

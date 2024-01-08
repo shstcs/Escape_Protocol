@@ -6,6 +6,9 @@ using UnityEngine;
 public class StateMachine
 {
     protected IState currentState;
+
+    #region Methods
+
     public void ChangeState(IState newState)
     {
         if(currentState != newState)
@@ -32,4 +35,6 @@ public class StateMachine
     {
         currentState?.PhysicsUpdate();
     }
+
+    #endregion
 }
