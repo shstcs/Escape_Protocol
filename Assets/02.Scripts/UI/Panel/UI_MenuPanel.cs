@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UI_MenuPanel : MonoBehaviour
 {
+    #region Factors
     private Animator CameraObject;
 
     // campaign button sub menu
@@ -20,17 +21,11 @@ public class UI_MenuPanel : MonoBehaviour
     public GameObject PanelControls;
     public GameObject PanelVideo;
     public GameObject PanelGame;
-    public GameObject PanelMovement;
-    public GameObject PanelCombat;
-    public GameObject PanelGeneral;
 
     [Header("SETTINGS SCREEN")]
     public GameObject lineGame;
     public GameObject lineVideo;
     public GameObject lineControls;
-    public GameObject lineMovement;
-    public GameObject lineCombat;
-    public GameObject lineGeneral;
 
     [Header("LOADING SCREEN")]
     public GameObject loadingMenu;
@@ -41,7 +36,9 @@ public class UI_MenuPanel : MonoBehaviour
     public AudioSource hoverSound;
     public AudioSource sliderSound;
     public AudioSource swooshSound;
+    #endregion
 
+    #region LifeCycle
     void Start()
     {
         CameraObject = transform.GetComponent<Animator>();
@@ -52,7 +49,9 @@ public class UI_MenuPanel : MonoBehaviour
         mainMenu.SetActive(true);
         Main.Game.IsClear = false;
     }
+    #endregion
 
+    #region Controls
     public void PlayCampaign()
     {
         exitMenu.SetActive(false);
@@ -112,13 +111,6 @@ public class UI_MenuPanel : MonoBehaviour
         lineGame.SetActive(false);
         lineControls.SetActive(false);
         lineVideo.SetActive(false);
-
-        PanelMovement.SetActive(false);
-        lineMovement.SetActive(false);
-        PanelCombat.SetActive(false);
-        lineCombat.SetActive(false);
-        PanelGeneral.SetActive(false);
-        lineGeneral.SetActive(false);
     }
 
     public void GamePanel()
@@ -142,27 +134,20 @@ public class UI_MenuPanel : MonoBehaviour
         lineControls.SetActive(true);
     }
 
-    public void MovementPanel()
+    // Are You Sure - Quit Panel Pop Up
+    public void AreYouSure()
     {
-        DisablePanels();
-        PanelMovement.SetActive(true);
-        lineMovement.SetActive(true);
+        exitMenu.SetActive(true);
+        DisablePlayCampaign();
     }
 
-    public void CombatPanel()
+    public void QuitGame()
     {
-        DisablePanels();
-        PanelCombat.SetActive(true);
-        lineCombat.SetActive(true);
+        UnityEditor.EditorApplication.isPlaying = false;
     }
+    #endregion
 
-    public void GeneralPanel()
-    {
-        DisablePanels();
-        PanelGeneral.SetActive(true);
-        lineGeneral.SetActive(true);
-    }
-
+    #region SFX
     public void PlayHover()
     {
         hoverSound.Play();
@@ -177,19 +162,9 @@ public class UI_MenuPanel : MonoBehaviour
     {
         swooshSound.Play();
     }
+    #endregion
 
-    // Are You Sure - Quit Panel Pop Up
-    public void AreYouSure()
-    {
-        exitMenu.SetActive(true);
-        DisablePlayCampaign();
-    }
-
-    public void QuitGame()
-    {
-        UnityEditor.EditorApplication.isPlaying = false;
-    }
-
+    #region Loading
     IEnumerator LoadAsynchronously(string sceneName)
     { // scene name is just the name of the current scene being loaded
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
@@ -210,4 +185,5 @@ public class UI_MenuPanel : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
 }

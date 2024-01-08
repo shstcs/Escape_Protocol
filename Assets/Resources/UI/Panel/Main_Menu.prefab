@@ -2701,7 +2701,7 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1540456779925927252}
   m_maskType: 0
 --- !u!1 &1443833567419139988
@@ -3198,21 +3198,12 @@ MonoBehaviour:
   PanelControls: {fileID: 8432854071574604896}
   PanelVideo: {fileID: 1606862043080785735}
   PanelGame: {fileID: 4631571477801064473}
-  PanelKeyBindings: {fileID: 0}
-  PanelMovement: {fileID: 0}
-  PanelCombat: {fileID: 0}
-  PanelGeneral: {fileID: 0}
   lineGame: {fileID: 2360011969916090087}
   lineVideo: {fileID: 873966193557273126}
   lineControls: {fileID: 3540499816507397276}
-  lineKeyBindings: {fileID: 0}
-  lineMovement: {fileID: 0}
-  lineCombat: {fileID: 0}
-  lineGeneral: {fileID: 0}
   loadingMenu: {fileID: 4630709644625323948}
   loadingBar: {fileID: 1981211169436535435}
   loadPromptText: {fileID: 4929965724755497458}
-  userPromptKey: 13
   hoverSound: {fileID: 3893260311881182074}
   sliderSound: {fileID: 5422806446587917083}
   swooshSound: {fileID: 6125882626657564203}
@@ -4922,6 +4913,7 @@ GameObject:
   - component: {fileID: 501689337892774312}
   - component: {fileID: 2318185856192948170}
   - component: {fileID: 3867198126145721672}
+  - component: {fileID: 5378451772460018362}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -4946,8 +4938,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 200}
-  m_SizeDelta: {x: 1000, y: 300}
+  m_AnchoredPosition: {x: -550, y: 200}
+  m_SizeDelta: {x: 600, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2318185856192948170
 CanvasRenderer:
@@ -4977,10 +4969,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Escape Protocol
+  m_text: "Escape \nProtocol"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 537eb1eef138da7489d2d0c861629654, type: 2}
-  m_sharedMaterial: {fileID: -2009162042594335899, guid: 537eb1eef138da7489d2d0c861629654, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0b65c99348f068b49bef5db0bb76a6e4, type: 2}
+  m_sharedMaterial: {fileID: 21809785584020342, guid: 0b65c99348f068b49bef5db0bb76a6e4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5011,7 +5003,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -5046,6 +5038,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5378451772460018362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368491282210430937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1596b0301eb4de54cb5a528add781168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2378423288891356759
 GameObject:
   m_ObjectHideFlags: 0
@@ -7196,7 +7200,6 @@ MonoBehaviour:
   sensitivityXSlider: {fileID: 3372358278899566891}
   sensitivityYSlider: {fileID: 1446459679398418027}
   mouseSmoothSlider: {fileID: 8817907091434884045}
-  keyConfirm: {fileID: 0}
 --- !u!1 &3540499816507397276
 GameObject:
   m_ObjectHideFlags: 0
@@ -16471,7 +16474,7 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1632802268856731290}
   m_maskType: 0
 --- !u!1 &9208358316969514624
@@ -16643,6 +16646,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_renderer: {fileID: 7137161945738969807}
   m_maskType: 0
