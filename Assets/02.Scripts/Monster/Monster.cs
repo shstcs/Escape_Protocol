@@ -57,4 +57,9 @@ public class Monster : MonoBehaviour
     {
         stateMachine.ChangeState(stateMachine.WanderingState);
     }
+
+    private void OnDestroy()
+    {
+        Main.Game.OnDoorOpen -= OnChase;
+    }
 }
