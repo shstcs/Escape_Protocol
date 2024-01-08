@@ -25240,9 +25240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a73ea5c4d7d414ea9843d592f8f187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedDoor: {fileID: 11400000, guid: 5aa8ac7908164594a9e0992a5e428f55, type: 2}
   KeyDoor: {fileID: 6321255682733465137}
   OpenDoorSound: {fileID: 8476639566488030968}
+  _keycolor: 2
 --- !u!1 &8307855304633157372
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class LockObject : MonoBehaviour, IInteractable
 {
-    public LockedDoorData lockedDoor;
-
     [SerializeField] private GameObject KeyDoor;
     [SerializeField] private AudioSource OpenDoorSound;
 
     private BoxCollider _doorCollider;
     private Animator _doorAnimator;
+
+    enum Color {Blue, Green, Red };
+    [SerializeField] private Color _keycolor;
     
 
     //case blue, red, green 일때 따로따로 배치하는 방법이 필요하다.
@@ -25,48 +26,27 @@ public class LockObject : MonoBehaviour, IInteractable
 
     public string GetInteractPrompt()
     {
-        switch (lockedDoor.DisPlayName)
-        {
-            case "Blue":
-                if (Main.Player.KeyCheck.Blue == true)
-                    return string.Format("Open {0} Door", lockedDoor.DisPlayName);
-                else
-                    return string.Format("Need {0} Key", lockedDoor.DisPlayName);
+        if (Main.Player.KeyCheck.Blue == true && _keycolor == Color.Blue)
+            return string.Format("Open {0} Door", _keycolor);
 
-            case "Red":
-                if (Main.Player.KeyCheck.Red == true)
-                    return string.Format("Open {0} Door", lockedDoor.DisPlayName);
-                else
-                    return string.Format("Need {0} Key", lockedDoor.DisPlayName);
+        else if (Main.Player.KeyCheck.Red == true && _keycolor == Color.Red)
+            return string.Format("Open {0} Door", _keycolor);
 
-            case "Green":
-                if (Main.Player.KeyCheck.Green == true)
-                    return string.Format("Open {0} Door", lockedDoor.DisPlayName);
-                else
-                    return string.Format("Need {0} Key", lockedDoor.DisPlayName);
-        }
-        return string.Format("Need {0} Key", lockedDoor.DisPlayName);
+        else if (Main.Player.KeyCheck.Green == true && _keycolor == Color.Green)
+            return string.Format("Open {0} Door", _keycolor);
+
+        else
+            return string.Format("Need {0} Key", _keycolor);
     }
 
     public void OnInteract()
     {
-        switch(lockedDoor.DisPlayName)
-        {
-            case "Blue":
-                if (Main.Player.KeyCheck.Blue == true)
-                {
-                    DoorInteraction();
-                }
-                break;
-            case "Red":
-                if (Main.Player.KeyCheck.Red == true)
-                    DoorInteraction();
-                    break;
-            case "Green":
-                if(Main.Player.KeyCheck.Green == true)
-                    DoorInteraction();
-                break;
-        }
+        if (Main.Player.KeyCheck.Blue == true && _keycolor == Color.Blue)
+            DoorInteraction();          
+        if (Main.Player.KeyCheck.Red == true && _keycolor == Color.Red)
+            DoorInteraction();
+        if(Main.Player.KeyCheck.Green == true && _keycolor == Color.Green)
+            DoorInteraction();
     }
 
     public void DoorInteraction()
