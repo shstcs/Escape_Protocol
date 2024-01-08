@@ -54,7 +54,9 @@ public class LockObject : MonoBehaviour, IInteractable
         {
             case "Blue":
                 if (Main.Player.KeyCheck.Blue == true)
+                {
                     DoorInteraction();
+                }
                 break;
             case "Red":
                 if (Main.Player.KeyCheck.Red == true)

@@ -20,6 +20,7 @@ public class Monster : MonoBehaviour
 
     private void Awake()
     {
+        Main.Game.OnDoorOpen += OnChase;
         AnimationData.Initialize();
 
         Agent = GetComponent<NavMeshAgent>();
@@ -50,5 +51,10 @@ public class Monster : MonoBehaviour
     private void OnAttack()
     {
         stateMachine.Target.TakeDamage(50);
+    }
+
+    private void OnChase()
+    {
+        stateMachine.ChangeState(stateMachine.WanderingState);
     }
 }

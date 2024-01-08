@@ -14,6 +14,7 @@ public class MonsterChasingState : MonsterBaseState
         stateMachine.MovementSpeedModifier = 1.5f;
         base.Enter();
         StartAnimation(stateMachine.Monster.AnimationData.RunParameterHash);
+        Debug.Log("추격중");
     }
 
     public override void Exit()
