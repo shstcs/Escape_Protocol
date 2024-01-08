@@ -215,7 +215,7 @@ public class UI_HUDPanel : MonoBehaviour
         TMP_Text t = Resources.Load<TMP_Text>("UI\\BulletEffectText");
         TMP_Text _bulletEffect = Instantiate(t);
         _bulletEffect.transform.SetParent(transform);
-        _bulletEffect.transform.position = new Vector3(_bulletText.transform.position.x - 30, _bulletText.transform.position.y , _bulletText.transform.position.z);
+        _bulletEffect.transform.position = new Vector3(_bulletText.transform.position.x - 45, _bulletText.transform.position.y , _bulletText.transform.position.z);
         _bulletEffect.text = _gun.CurrentBulletCount.ToString();
 
         float alpha = 1;
