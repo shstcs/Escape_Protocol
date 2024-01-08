@@ -18,7 +18,7 @@
 - **Resolution** :	1920 x 1080 `FHD`
 <br/>
 
-## 👤Collaborator - Team Intro
+## 👤 Collaborator - Team Intro
 - 팀장  `최성재` - 몬스터 구현
 - 팀원1 `고현규` - 맵 구현
 - 팀원2 `성연호` - UI 구현
