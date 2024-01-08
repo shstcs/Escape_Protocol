@@ -55,10 +55,14 @@ public class UI_HUDPanel : MonoBehaviour
             ChangeConditions();
         }
     }
+    private void OnDestroy()
+    {
+        UnConnectActions();
+    }
     #endregion
 
     #region Connect to Actions
-    public void ConnetActions()
+    private void ConnetActions()
     {
         Main.Game.OnKeyGet += CreateDoorQuest;
         Main.Game.OnDoorOpen += CreateKeyQuest;
@@ -66,6 +70,15 @@ public class UI_HUDPanel : MonoBehaviour
         Main.Game.OnStageOver += ShowOverPanel;
         _health.OnDie += ShowOverPanel;
     }
+
+    private void UnConnectActions()
+    {
+        Main.Game.OnKeyGet -= CreateDoorQuest;
+        Main.Game.OnDoorOpen -= CreateKeyQuest;
+        Main.Game.OnWeaponGet -= ChangeWeapon;
+        Main.Game.OnStageOver -= ShowOverPanel;
+        _health.OnDie -= ShowOverPanel;
+    } 
     #endregion
 
     #region Change Conditions
