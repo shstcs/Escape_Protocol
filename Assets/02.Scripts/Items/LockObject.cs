@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LockObject : MonoBehaviour, IInteractable
 {
-    public LockedDoorData lockedDoor;
-
     [SerializeField] private GameObject KeyDoor;
     [SerializeField] private AudioSource OpenDoorSound;
 
