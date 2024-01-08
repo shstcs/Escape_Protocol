@@ -9,6 +9,7 @@ public class ClearObject : MonoBehaviour
         if(other.tag == "Player")
         {
             Main.Game.IsClear = true;
+            Main.Game.IsStage1Clear = true;
             Main.Game.CallStageOver();
         }
     }
