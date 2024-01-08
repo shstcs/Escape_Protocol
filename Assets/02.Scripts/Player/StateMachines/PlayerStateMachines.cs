@@ -1,10 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStateMachine : StateMachine
 {
+    #region Fields
+
     private float _jumpStartTime; // 점프 시작 시간
+
+    #endregion
+
+    #region Properties
 
     public Player Player { get; }
 
@@ -35,6 +39,8 @@ public class PlayerStateMachine : StateMachine
     public Transform MainCameraTransform { get; set; }
 
     public PlayerStamina Stamina { get; private set; }
+
+    #endregion
 
     public PlayerStateMachine(Player player, PlayerStamina stamina)
     {

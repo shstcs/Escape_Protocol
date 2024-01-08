@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    #region Fields
+
     [field: Header("References")]
     [field: SerializeField] public PlayerSO Data { get; private set; }
 
@@ -18,6 +20,10 @@ public class Player : MonoBehaviour
     // 현재 가지고 있는 키 확인
     [HideInInspector]
     public KeyCheck KeyCheck = new();
+
+    #endregion
+
+    #region MonoBehaviours
 
     private void Awake()
     {
@@ -48,6 +54,8 @@ public class Player : MonoBehaviour
     {
         stateMachine.PhysicsUpdate();
     }
+
+    #endregion
 }
 
 //잠시 넣어놓았습니다 - 연호

@@ -13,6 +13,8 @@ public interface IInteractable
 
 public class InteractionManager : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private float checkRate = 0.05f;
     private float lastCheckTime;
     [SerializeField] private float maxCheckDistance;
@@ -23,6 +25,10 @@ public class InteractionManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI promptText;
     private Camera camera;
+
+    #endregion
+
+    #region MonoBehaviours
 
     private void Start()
     {
@@ -56,10 +62,14 @@ public class InteractionManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Methods
+
     private void SetPromptText()
     {
         promptText.gameObject.SetActive(true);
-        // 키보드 K를 누르면 열쇠 획득 가능
+        // 키보드 F를 누르면 열쇠 획득 가능
         promptText.text = string.Format("<b>[F]</b> {0}", curInteractable.GetInteractPrompt());
     }
 
@@ -73,4 +83,6 @@ public class InteractionManager : MonoBehaviour
             promptText.gameObject.SetActive(false);
         }
     }
+
+    #endregion
 }

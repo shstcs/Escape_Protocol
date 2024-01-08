@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private float _maxHealth = 100f;
     [SerializeField] private float _healthRegenerationRate = 0.5f;
 
@@ -14,6 +16,10 @@ public class PlayerHealth : MonoBehaviour
 
     private UI_HUDPanel _uiHUD;
 
+    #endregion
+
+    #region Properties
+
     public float Health
     {
         get { return _health; }
@@ -21,6 +27,10 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public bool IsDead => _health == 0;
+
+    #endregion
+
+    #region MonoBehaviours
 
     private void Start()
     {
@@ -38,6 +48,10 @@ public class PlayerHealth : MonoBehaviour
         }
         //Debug.Log(_health);
     }
+
+    #endregion
+
+    #region Methods
 
     private void ResetHealth()
     {
@@ -113,4 +127,6 @@ public class PlayerHealth : MonoBehaviour
             _uiHUD.StartDamageBackground();
         }
     }
+
+    #endregion
 }

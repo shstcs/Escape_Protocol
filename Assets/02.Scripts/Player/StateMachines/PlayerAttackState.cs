@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerBaseState
 {
+    #region Fields
+
     private bool alreadyAppliedForce;
 
     AttackInfoData attackInfoData;
     PlayerAttackData playerAttackData;
+
+    #endregion
 
     public PlayerAttackState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {

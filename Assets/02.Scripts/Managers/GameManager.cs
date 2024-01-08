@@ -5,13 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    #region Fields
+
     public UnityAction OnStageStart;
     public UnityAction OnStageOver;
     public UnityAction OnKeyGet;
     public UnityAction OnDoorOpen;
     public UnityAction OnWeaponGet;
+
+    #endregion
+
+    #region Properties
+
     public bool IsClear { get; set; }
     public bool IsStage1Clear { get; set; }
+
+    #endregion
+
+    #region Methods
 
     public void CallStageStart()
     {
@@ -37,4 +48,6 @@ public class GameManager : MonoBehaviour
     {
         OnWeaponGet?.Invoke();
     }
+
+    #endregion
 }

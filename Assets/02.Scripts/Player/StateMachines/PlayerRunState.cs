@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class PlayerRunState : PlayerGroundedState
 {
+    #region Fields
+
     private PlayerStamina playerStamina;
+
+    #endregion
 
     public PlayerRunState(PlayerStateMachine playerStateMachine, PlayerStamina stamina) : base(playerStateMachine)
     {

@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PlayerStamina : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private float _maxStamina = 100f;
     [SerializeField] private float _staminaRegenerationRate = 0.5f;
     [SerializeField] private float _staminaConsumptionRate = 20f;
+
+    #endregion
+
+    #region Properties
 
     public float CurrentStamina { get; private set; }
 
@@ -15,6 +21,10 @@ public class PlayerStamina : MonoBehaviour
         get { return _staminaConsumptionRate; }
         private set { _staminaConsumptionRate = value; }
     }
+
+    #endregion
+
+    #region MonoBehaviours
 
     private void Start()
     {
@@ -30,6 +40,10 @@ public class PlayerStamina : MonoBehaviour
         }
         //Debug.Log(CurrentStamina);
     }
+
+    #endregion
+
+    #region Methods
 
     private void ResetStamina()
     {
@@ -66,4 +80,6 @@ public class PlayerStamina : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
+
+    #endregion
 }
