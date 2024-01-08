@@ -6,6 +6,7 @@ using TMPro;
 
 public class UI_SettingsPanel : MonoBehaviour
 {
+    #region Fields
     [Header("VIDEO SETTINGS")]
     public GameObject fullscreentext;
     public GameObject texturelowtextLINE;
@@ -29,6 +30,9 @@ public class UI_SettingsPanel : MonoBehaviour
     private float sliderValueXSensitivity = 0.0f;
     private float sliderValueYSensitivity = 0.0f;
     private float sliderValueSmoothing = 0.0f;
+    #endregion
+
+    #region LifeCycle
     public void Start()
     {
         // check difficulty
@@ -92,7 +96,9 @@ public class UI_SettingsPanel : MonoBehaviour
         sliderValueYSensitivity = sensitivityYSlider.GetComponent<Slider>().value;
         sliderValueSmoothing = mouseSmoothSlider.GetComponent<Slider>().value;
     }
+    #endregion
 
+    #region Setting Options
     public void FullScreen()
     {
         Screen.fullScreen = !Screen.fullScreen;
@@ -141,7 +147,6 @@ public class UI_SettingsPanel : MonoBehaviour
         difficultynormaltextLINE.gameObject.SetActive(false);
         PlayerPrefs.SetInt("NormalDifficulty", 0);
     }
-
     public void GunEffects()
     {
         if (PlayerPrefs.GetInt("GunEffects") == 0)
@@ -155,7 +160,6 @@ public class UI_SettingsPanel : MonoBehaviour
             guneffectstext.GetComponent<TMP_Text>().text = "off";
         }
     }
-
     public void TexturesLow()
     {
         PlayerPrefs.SetInt("Textures", 0);
@@ -182,5 +186,6 @@ public class UI_SettingsPanel : MonoBehaviour
         texturemedtextLINE.gameObject.SetActive(false);
         texturehightextLINE.gameObject.SetActive(true);
     }
+    #endregion
 }
 

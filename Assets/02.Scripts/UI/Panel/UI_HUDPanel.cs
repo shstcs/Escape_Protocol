@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class UI_HUDPanel : MonoBehaviour
 {
-    #region Factors
+    #region Fields
     [Header("Condition")]
     [SerializeField] private Image _hpBar;
     [SerializeField] private TMP_Text _hpText;

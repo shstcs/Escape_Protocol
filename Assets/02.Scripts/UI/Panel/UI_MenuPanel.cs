@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UI_MenuPanel : MonoBehaviour
 {
-    #region Factors
+    #region Fields
     private Animator CameraObject;
 
     // campaign button sub menu

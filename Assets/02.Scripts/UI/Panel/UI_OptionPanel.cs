@@ -11,6 +11,7 @@ public class UI_OptionPanel : MonoBehaviour
         StartCoroutine(Main.UI.TimeStopDelay());
     }
 
+    #region Controls
     public void ReturnToMenu(string sceneName)
     {
         Time.timeScale = 1;
@@ -35,4 +36,5 @@ public class UI_OptionPanel : MonoBehaviour
         GameObject _sound = GameObject.Find("BackgroundMusic");
         _sound.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
     }
+    #endregion
 }
