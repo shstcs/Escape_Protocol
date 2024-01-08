@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStateMachine : StateMachine
 {
+    private float _jumpStartTime; // 점프 시작 시간
+
     public Player Player { get; }
 
     // States
@@ -23,6 +25,12 @@ public class PlayerStateMachine : StateMachine
     public float JumpForce { get; set; }
 
     public bool IsAttacking { get; set; }
+
+    public float JumpStartTime
+    {
+        get { return _jumpStartTime; }
+        private set { _jumpStartTime = value; }
+    }
 
     public Transform MainCameraTransform { get; set; }
 
@@ -45,5 +53,10 @@ public class PlayerStateMachine : StateMachine
 
         MovementSpeed = player.Data.GroundedData.BaseSpeed;
         RotationDamping = player.Data.GroundedData.BaseRotationDamping;
+    }
+
+    public void SetJumpStartTime(float time)
+    {
+        _jumpStartTime = time;
     }
 }
