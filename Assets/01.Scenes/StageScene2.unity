@@ -665,6 +665,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 812160889981035136, guid: 9f1db631e85f3ac49a1840f1fd495b60, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1071572682337935681, guid: 9f1db631e85f3ac49a1840f1fd495b60, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -789,6 +793,10 @@ PrefabInstance:
       propertyPath: OpenDoorSound
       value: 
       objectReference: {fileID: 1501730359}
+    - target: {fileID: 6697797119174361484, guid: 9f1db631e85f3ac49a1840f1fd495b60, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8454482404798606043, guid: 9f1db631e85f3ac49a1840f1fd495b60, type: 3}
       propertyPath: OpenDoorSound
       value: 
