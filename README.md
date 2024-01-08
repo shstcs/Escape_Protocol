@@ -29,7 +29,7 @@
 ## ▶️ 게임 스크린샷
 
 <p align="center">
-  <img src="https://github.com/GAMGDOG/UnityTeamProject_2024_01_02/assets/149379194/c1bf49e4-d950-4db1-9f63-78186c5a4724" width="49%"/>
+  <img src="https://github.com/GAMGDOG/UnityTeamProject_2024_01_02/assets/149379194/7828c86e-4dde-4601-be6e-f03253fa70a8" width="49%"/>
   <img src="https://github.com/GAMGDOG/UnityTeamProject_2024_01_02/assets/149379194/463404d1-37e0-48d3-9623-210877bb73a9" width="49%"/>
 </p>
 <p align="center">
