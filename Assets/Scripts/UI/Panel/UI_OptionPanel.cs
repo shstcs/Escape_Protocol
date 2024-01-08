@@ -8,8 +8,7 @@ public class UI_OptionPanel : MonoBehaviour
 {
     private void Start()
     {
-        StartCoroutine(nameof(TimeStopDelay));
-
+        StartCoroutine(Main.UI.TimeStopDelay());
     }
 
     public void ReturnToMenu(string sceneName)
@@ -35,12 +34,5 @@ public class UI_OptionPanel : MonoBehaviour
     {
         GameObject _sound = GameObject.Find("BackgroundMusic");
         _sound.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
-    }
-
-
-    private IEnumerator TimeStopDelay()
-    {
-        yield return new WaitForSeconds(0.2f);
-        Time.timeScale = 0;
     }
 }

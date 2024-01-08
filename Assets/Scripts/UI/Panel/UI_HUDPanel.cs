@@ -29,8 +29,8 @@ public class UI_HUDPanel : MonoBehaviour
 
     private void Awake()
     {
-        _player = GameObject.Find("Player").GetComponent<Player>();
-        _health = GameObject.Find("Player").GetComponent<PlayerHealth>();
+        _player = Main.Player;
+        _health = _player.gameObject.GetComponent<PlayerHealth>();
         
     }
 
@@ -45,7 +45,6 @@ public class UI_HUDPanel : MonoBehaviour
         Main.Game.OnDoorOpen += CreateKeyQuest;
         Main.Game.OnWeaponGet += ChangeWeapon;
         Main.Game.OnStageOver += ShowOverPanel;
-        //사실 위에걸로 해도 되긴 함.
         _health.OnDie += ShowOverPanel;
     }
 
@@ -88,7 +87,6 @@ public class UI_HUDPanel : MonoBehaviour
         float old = _hpBar.fillAmount;
         _hpBar.fillAmount = _health.Health / 100;
         _hpText.text = _health.Health.ToString("F0");
-        if( old > _hpBar.fillAmount) StartCoroutine(nameof(HpDamaged));
     }
 
     private void ChangeStamina()
@@ -102,6 +100,7 @@ public class UI_HUDPanel : MonoBehaviour
     public void StartDamageBackground()
     {
         StartCoroutine(nameof(ShowDamageBackground));
+        StartCoroutine(nameof(HpDamaged));
     }
 
     public void ShowOverPanel()
@@ -118,11 +117,6 @@ public class UI_HUDPanel : MonoBehaviour
         Instantiate(optionPanel);
     }
 
-    private void StageOver()
-    {
-        ShowOverPanel();
-    }
-
     private void CreateDoorQuest()
     {
         CreateQuest();
@@ -132,7 +126,11 @@ public class UI_HUDPanel : MonoBehaviour
     private void CreateKeyQuest()
     {
         CreateQuest();
-        _quest.SetText("열쇠를 찾아라");
+        if (Main.Player.KeyCheck.Red)
+        {
+            _quest.SetText("탈출하라");
+        }
+        else _quest.SetText("열쇠를 찾아라");
     }
 
     private void CreateQuest()

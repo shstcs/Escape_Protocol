@@ -11,12 +11,8 @@ public class Player : MonoBehaviour
     public PlayerInput Input { get; private set; }
     public CharacterController Controller { get; private set; }
     public ForceReceiver ForceReceiver { get; private set; }
-
     private PlayerStateMachine stateMachine;
-
     public PlayerStamina Stamina { get; private set; }
-
-    //[field: SerializeField] public Gun Gun { get; private set; }
     [field: SerializeField] public GunController GunController { get; private set; }
 
     // 현재 가지고 있는 키 확인

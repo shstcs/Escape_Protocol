@@ -11,14 +11,8 @@ public class UI_Quest : MonoBehaviour
         _questText = GetComponentInChildren<TMP_Text>();
     }
 
-    private void Start()
-    {
-        
-    }
-
     public void SetText(string text)
     {
         _questText.text = text;
     }
-
 }
