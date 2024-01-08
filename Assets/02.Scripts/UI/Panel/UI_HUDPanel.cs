@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class UI_HUDPanel : MonoBehaviour
 {
+    #region Factors
     [Header("Condition")]
     [SerializeField] private Image _hpBar;
     [SerializeField] private TMP_Text _hpText;
@@ -27,32 +28,20 @@ public class UI_HUDPanel : MonoBehaviour
     private Color _staminaColor;
     private Color _hpColor;
 
-    private void Awake()
+    #endregion
+
+    #region LifeCycle
+    private void Start()
     {
         _player = Main.Player;
         _health = _player.gameObject.GetComponent<PlayerHealth>();
-        
-    }
 
-    private void Start()
-    {
         CreateKeyQuest();
         ChangeWeapon();
+        ConnetActions();
         _staminaColor = _staminaBar.color;
         _hpColor = _hpBar.color;
-
-        Main.Game.OnKeyGet += CreateDoorQuest;
-        Main.Game.OnDoorOpen += CreateKeyQuest;
-        Main.Game.OnWeaponGet += ChangeWeapon;
-        Main.Game.OnStageOver += ShowOverPanel;
-        _health.OnDie += ShowOverPanel;
     }
-
-    private void ChangeWeapon()
-    {
-        _gun = Main.Player.GunController.CurrentGun;
-    }
-
     private void Update()
     {
         if (Time.timeScale > 0)
@@ -62,16 +51,33 @@ public class UI_HUDPanel : MonoBehaviour
                 ShowOptionPanel();
                 Cursor.lockState = CursorLockMode.None;
             }
-            
+
             ChangeConditions();
         }
     }
+    #endregion
 
+    #region Connect to Actions
+    public void ConnetActions()
+    {
+        Main.Game.OnKeyGet += CreateDoorQuest;
+        Main.Game.OnDoorOpen += CreateKeyQuest;
+        Main.Game.OnWeaponGet += ChangeWeapon;
+        Main.Game.OnStageOver += ShowOverPanel;
+        _health.OnDie += ShowOverPanel;
+    }
+    #endregion
+
+    #region Change Conditions
     private void ChangeConditions()
     {
         ChangeHP();
         ChangeStamina();
         ChangeBullet();
+    }
+    private void ChangeWeapon()
+    {
+        _gun = Main.Player.GunController.CurrentGun;
     }
 
     private void ChangeBullet()
@@ -96,7 +102,9 @@ public class UI_HUDPanel : MonoBehaviour
         _staminaText.text = _player.Stamina.CurrentStamina.ToString("F0");
         _staminaBar.color = old > _staminaBar.fillAmount ? new Color(.7f, 1, .7f) : _staminaColor;
     }
+    #endregion
 
+    #region Show Panel
     public void StartDamageBackground()
     {
         StartCoroutine(nameof(ShowDamageBackground));
@@ -117,41 +125,37 @@ public class UI_HUDPanel : MonoBehaviour
         Instantiate(optionPanel);
     }
 
+    #endregion
+
+    #region Quest
     private void CreateDoorQuest()
     {
-        CreateQuest();
-        _quest.SetText("문을 열어 탈출하라");
+        StartCoroutine(CreateQuests("문을 열어 탈출하라"));
     }
 
     private void CreateKeyQuest()
     {
-        CreateQuest();
         if (Main.Player.KeyCheck.Red)
         {
-            _quest.SetText("탈출하라");
+            StartCoroutine(CreateQuests("탈출하라"));
         }
-        else _quest.SetText("열쇠를 찾아라");
+        else StartCoroutine(CreateQuests("열쇠를 찾아라"));
     }
+    #endregion
 
-    private void CreateQuest()
+    #region Coroutine
+    private IEnumerator CreateQuests(string questName)
     {
         if (_quest != null)
         {
-            Destroy(_quest.gameObject);
-            _quest = null;
-        }
-
-        Image img = Resources.Load<Image>("UI\\QuestBox");
-        _quest = Instantiate(img).GetComponent<UI_Quest>();
-        _quest.transform.SetParent(_questTransform);
-        _quest.transform.localPosition = Vector3.zero;
-    }
-
-    private IEnumerator CreateQuests()
-    {
-        if (_quest != null)
-        {
-            //점점 투명하게
+            float _duration = 1f;
+            while(_duration > 0)
+            {
+                _quest.GetComponent<Image>().color = new Color(1, 1, 1, _duration);
+                _quest.GetComponentInChildren<TMP_Text>().color = new Color(0, 0, 0, _duration);
+                _duration -= Time.deltaTime;
+                yield return null;
+            }
             Destroy(_quest.gameObject);
             _quest = null;
         }
@@ -161,8 +165,16 @@ public class UI_HUDPanel : MonoBehaviour
         Transform questPos = gameObject.transform.Find("QuestLayout");
         _quest.transform.SetParent(questPos);
         _quest.transform.position = questPos.position;
-        //점점 선명하게
-        yield return null;
+        _quest.SetText(questName);
+
+        float duration = 0f;
+        while (duration < 1)
+        {
+            _quest.GetComponent<Image>().color = new Color(1, 1, 1, duration);
+            _quest.GetComponentInChildren<TMP_Text>().color = new Color(0, 0, 0, duration);
+            duration += Time.deltaTime;
+            yield return null;
+        }
     }
 
     private IEnumerator ShowDamageBackground()
@@ -204,5 +216,5 @@ public class UI_HUDPanel : MonoBehaviour
         }
         Destroy(_bulletEffect);
     }
-
+    #endregion
 }
