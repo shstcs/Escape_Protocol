@@ -53,5 +53,4 @@
 
 ### Manager
 Singleton Pattern을 사용하여 Manager를 구현함.  
-이유 : 
 
